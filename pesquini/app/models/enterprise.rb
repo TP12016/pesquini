@@ -26,7 +26,7 @@ class Enterprise < ActiveRecord::Base
     # Receives last sanction.
     sanction = self.sanctions.last
 
-    unless sanction.nil?()
+    if not sanction.nil?()
       self.sanctions.each do |searched_sanction|
 
         # This block will compare the initial and last dates of the sanctions,
@@ -53,7 +53,7 @@ class Enterprise < ActiveRecord::Base
     # [String] Receives last payment received by an enterprise.
     payment = self.payments.last()
 
-    unless payment.nil?()
+    if not payment.nil?()
       self.payments.each do |searched_payment|
 
         # This block will compare the researched payment amount on date,
@@ -143,7 +143,7 @@ class Enterprise < ActiveRecord::Base
   # Method shows that the most sanctioned companies to build a ranking.
   #
   # @return [String] a list with the enterprises with more sanctions.
-  def self.most_sanctioned_ranking()   
+  def self.most_sanctioned_ranking()
 
     enterprise_group = []
     enterprise_group_count = []
@@ -153,12 +153,12 @@ class Enterprise < ActiveRecord::Base
     sorted_sanctions = Enterprise.all.sort_by{ |qnt_sanctions_ranking| qnt_sanctions_ranking.sanctions_count }
 
     Preconditions.check_not_nil( sorted_sanctions )
-    
+
     # [String] reverse sort.
     sorted_group_sanctions = sorted_sanctions.uniq.group_by( &:sanctions_count ).to_a.reverse
 
     Preconditions.check_not_nil( sorted_group_sanctions )
-    
+
     # Sort sanctions in groups.
     sorted_group_sanctions.each do |qnt_group_sanctions|
       enterprise_group << qnt_group_sanctions[0]
