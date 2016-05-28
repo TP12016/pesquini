@@ -30,7 +30,6 @@ class State < ActiveRecord::Base
   # @return [String] state abbreviation.
   def self.all_states()
 
-
     states_abbreviation = ["BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC", "ES", "PR",
               "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC",
               "TO", "GO", "PE", "AP", "MS", "MT", "MA", "Não Informado"]
