@@ -6,9 +6,9 @@ Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
 
-module CheckAndSave
+module ParserCheckSave
 
-	# 
+  # 
   # Method that check and save parser information.
   # @param check [String] Use to check content.
   # 
@@ -26,6 +26,6 @@ module CheckAndSave
     end
     
   end
-
+  
 end
 
