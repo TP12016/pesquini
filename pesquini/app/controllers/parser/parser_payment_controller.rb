@@ -9,6 +9,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 class Parser::ParserPaymentController < Parser::ParserController
 
   require 'csv'
+  require 'logger'
   require 'open-uri'
   include CheckAndSave
 
@@ -35,9 +36,13 @@ class Parser::ParserPaymentController < Parser::ParserController
   def check_value( text )
 
     begin
-      text = text.gsub( ",", " " ).to_f()
-    rescue
-      text = "no string."
+      unless text = text.gsub( ",", " " ).to_f()
+        logger.error("Payment value in wrong format: #{text}")
+      end
+    end
+      
+    rescue StandardError::ArgumentError
+      logger.error(" #{text}: " + Errno::EINVAL)
     end
 
     return text

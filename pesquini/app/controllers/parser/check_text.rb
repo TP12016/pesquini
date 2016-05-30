@@ -7,6 +7,8 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
 
 module CheckText
+
+  require 'logger'
 	
 	# 
   # Method that check's for empty ascii caracters in data file.
@@ -37,9 +39,11 @@ module CheckText
     Preconditions.check_argument( text ) { is_not_nil }
 
     begin
-      text_date = text.to_date()
-    rescue
-      text_date = nil
+      unless text_date = text.to_date()
+        logger.error("Date in wrong format: #{text_date}")
+      end
+    rescue StandardError::ArgumentError
+      logger.error(" #{text_date}: " + Errno::EINVAL)
     end
 
     return text_date
