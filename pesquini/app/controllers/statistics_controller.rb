@@ -52,9 +52,10 @@ class StatisticsController < ApplicationController
     Preconditions.check_not_nil( :sanction_years )
     if params[:sanction_years]
       @all = true
-      @enterprises_featured_payments = Enterprise.featured_payments.paginate( :page => params[:page], :per_page => 20 )
+      @enterprises_featured_payments = Enterprise.featured_payments.paginate(
+                                                    :page => params[:page], :per_page => 20 )
     else
-      @enterprises_featured_payments = Enterprise.featured_payments( 10 )
+      @enterprises_featured_payments = Enterprise.featured_payments( 20 )
     end
 
     return @enterprises_featured_payments
@@ -69,7 +70,8 @@ class StatisticsController < ApplicationController
 
     @quantidade = params[:sanctions_count]
     @enterprises_group = Enterprise.where( sanctions_count: @quantidade )
-    @enterprises_group_paginate = @enterprises_group.paginate( :page => params[:page], :per_page => 10)
+    @enterprises_group_paginate = @enterprises_group.paginate(
+                                :page => params[:page], :per_page => 10)
 
 
     return @enterprises_group_paginate
@@ -83,8 +85,9 @@ class StatisticsController < ApplicationController
   def payment_group_ranking()
 
     @quantidade = params[:payments_count]
-    @enterprises_payment = Enterprise.where( payments_count: @quantidade )                                     
-    @enterprises_payment_paginate = @enterprises_payment.paginate( :page => params[:page], :per_page => 10)
+    @enterprises_payment = Enterprise.where( payments_count: @quantidade )
+    @enterprises_payment_paginate = @enterprises_payment.paginate(
+                                        :page => params[:page], :per_page => 10)
 
     return @enterprises_payment_paginate
 
@@ -132,7 +135,8 @@ class StatisticsController < ApplicationController
 
     # Defines values to draw sanction by state chart.
     parameters.xAxis( :categories => @@states_list )
-    parameters.series( :name => "Número de Sanções", :yAxis => 0, :data => total_by_state )
+    parameters.series( :name => "Número de Sanções",
+                                :yAxis => 0, :data => total_by_state )
     parameters.yAxis [{:title => {:text => "Sanções", :margin => 30} }, ]
     parameters.legend( :align => "right", :verticalAlign => "top", :y => 75,
               :x => -50, :layout => "vertical", )
@@ -181,7 +185,8 @@ class StatisticsController < ApplicationController
 
       # Defines values to draw sanction by type chart.
       format.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
-      format.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
+      format.series( {:type => "pie", :name => "Sanções Encontradas",
+                                                                :data => total_by_type} )
       format.options[:title][:text] = title
       format.legend( :layout => "vertical" )
       format.legend_style( :style => {:left => "auto", :bottom => 'auto',
