@@ -104,7 +104,7 @@ class StatisticsController < ApplicationController
     gon.dados = total_by_state
 
     # [String] keeps graph title.
-    titulo = "Gráfico de Sanções por Estado"
+    title = "Chart Sanctions for State"
 
     # receives information for plot graph.
     @chart = sanction_by_state_graph_information()
@@ -121,7 +121,7 @@ class StatisticsController < ApplicationController
 
     LazyHighCharts::HighChart.new( "graph" ) do |parameters|
       Preconditions.check_not_nil( parameters )
-      parameters.title( :text => titulo )
+      parameters.title( :text => title )
       if( params[:year_].to_i() != 0 )
         parameters.title(:text => params[:year_].to_i() )
       else
@@ -145,7 +145,7 @@ class StatisticsController < ApplicationController
   # @return type of sanctions chart.
   def sanction_by_type_graph()
 
-    titulo = "Gráfico Sanções por Tipo"
+    title = "Gráfico Sanções por Tipo"
 
     @chart = sanction_by_type_graph_information()
 
@@ -174,7 +174,7 @@ class StatisticsController < ApplicationController
       Preconditions.check_not_nil( f )
       f.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
       f.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
-      f.options[:title][:text] = titulo
+      f.options[:title][:text] = title
       f.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto',
                 :right => "50px", :top => "100px"} )
       f.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
@@ -192,7 +192,7 @@ class StatisticsController < ApplicationController
   def total_by_state()
 
     assert state_results.empty?, "The list must not be empty!"
-    
+
     # [String] array of string that keep the results of sanctions by state.
     sanction_by_state_results = []
 
@@ -205,7 +205,7 @@ class StatisticsController < ApplicationController
       # [String] keeps state found by its abbreviation.
       state = State.find_by_abbreviation( "#{sanction_state}" )
 
-      # [String] keeps sanctions in a state, by state id. 
+      # [String] keeps sanctions in a state, by state id.
       sanctions_by_state = Sanction.where( state_id: state[:id] )
 
       assert selected_year.empty, "List can't be empty."
@@ -254,7 +254,7 @@ class StatisticsController < ApplicationController
 
       # [String] keeps sanction found by its description.
       sanction = SanctionType.find_by_description( sanction_type_[0] )
-      
+
       # [String] keeps sanction by its type.
       sanctions_by_type = Sanction.where( sanction_type:  sanction )
 
