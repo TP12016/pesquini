@@ -131,6 +131,8 @@ class Enterprise < ActiveRecord::Base
 
       Preconditions.check_not_nil( qnt_sanctions )
       Preconditions.check( index ) {has_type( Integer ) and satisfies( ">= 0" ) { index >= 0 }}
+      
+      # Verify if enterprise sanctions is equal the number of sanctions.
       if qnt_sanctions[0] == enterprise.sanctions_count
         return index + 1
       else

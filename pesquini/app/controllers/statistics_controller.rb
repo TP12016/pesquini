@@ -245,9 +245,6 @@ class StatisticsController < ApplicationController
   # @return [String] list of total sanctions by its type.
   def total_by_type()
 
-
-
-
     # List with sanctions by state.
     total_sanction_state_result = []
 

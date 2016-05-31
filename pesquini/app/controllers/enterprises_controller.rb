@@ -108,4 +108,6 @@ class EnterprisesController < ApplicationController
       # Nothing to do.
     end
 
+  end 
+
 end
