@@ -128,8 +128,8 @@ class StatisticsController < ApplicationController
         # Nothing to do.
       end
       parameters.xAxis( :categories => @@states_list )
-      parameters.series( :name => "Número de Sanções", :yAxis => 0, :data => total_by_state )
-      parameters.yAxis [{:title => {:text => "Sanções", :margin => 30} }, ]
+      parameters.series( :name => "Number of Sanctions", :yAxis => 0, :data => total_by_state )
+      parameters.yAxis [{:title => {:text => "Sanctions", :margin => 30} }, ]
       parameters.legend( :align => "right", :verticalAlign => "top", :y => 75,
                 :x => -50, :layout => "vertical", )
       parameters.chart( {:defaultSeriesType => "column"} )
@@ -145,13 +145,13 @@ class StatisticsController < ApplicationController
   # @return type of sanctions chart.
   def sanction_by_type_graph()
 
-    title = "Gráfico Sanções por Tipo"
+    title = "Chart Sanctions for Type"
 
     @chart = sanction_by_type_graph_information()
 
     if ( !@states )
       @states = @@states_list.clone
-      @states.unshift( "Todos" )
+      @states.unshift( "All" )
     else
       # Nothing to do.
     end
@@ -173,7 +173,7 @@ class StatisticsController < ApplicationController
     LazyHighCharts::HighChart.new( "pie" ) do |f|
       Preconditions.check_not_nil( f )
       f.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
-      f.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
+      f.series( {:type => "pie", :name => "Finded Sanctions", :data => total_by_type} )
       f.options[:title][:text] = title
       f.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto',
                 :right => "50px", :top => "100px"} )
@@ -258,7 +258,7 @@ class StatisticsController < ApplicationController
       # [String] keeps sanction by its type.
       sanctions_by_type = Sanction.where( sanction_type:  sanction )
 
-      if( params[:state_] && params[:state_] != "Todos" )
+      if( params[:state_] && params[:state_] != "All" )
         sanctions_by_type = sanctions_by_type.where( state_id: state[:id] )
       else
         # Nothing to do.
@@ -271,9 +271,9 @@ class StatisticsController < ApplicationController
       results2 = []
     end
 
-    results2 << "Não Informado"
+    results2 << "Uninformed"
       Preconditions.check_not_nil( total )
-      if ( params[:state_] && params[:state_] != "Todos" )
+      if ( params[:state_] && params[:state_] != "All" )
         total = Sanction.where(state_id: state[:id] ).count
       else
         total = Sanction.count
