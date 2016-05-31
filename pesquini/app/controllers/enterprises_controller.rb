@@ -79,18 +79,33 @@ class EnterprisesController < ApplicationController
 
     payment_position.each_with_index do |total_sum, index|
 
-      raise "total_sum should not be nil" if total_sum.nil?
-      Preconditions.check( index ) { index >= 0 }
-      
-      if total_sum.payments_sum == enterprise.payments_sum
-        return index + 1
-      else
-        # Nothing to do.
+      # Raise an exception in case total sum is nil.
+      if total_sum.nil?
+        raise "total_sum should not be nil" 
       end
+
+      payments_sum(total_sum, enterprise)      
     end
 
     return payment_position
 
   end
+
+  # 
+  # Give the next payment position.
+  # @param total_sum [String] keeps the sum of payments.
+  # @param enterprise [String] keeps the enterprise.  
+  # 
+  # @return [Integer] enterprise position according to the payment received.
+  def payments_sum( total_sum, enterprise )
+
+    Preconditions.check_not_nil( total_sum )
+    Preconditions.check( index ) { index >= 0 }
+      
+    if total_sum.payments_sum == enterprise.payments_sum
+      return index + 1
+    else
+      # Nothing to do.
+    end
 
 end
