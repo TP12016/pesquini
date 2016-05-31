@@ -99,9 +99,9 @@ class EnterprisesController < ApplicationController
   # @return [Integer] enterprise position according to the payment received.
   def payments_sum( total_sum, enterprise )
 
-    Preconditions.check_not_nil( total_sum )
     Preconditions.check( index ) { index >= 0 }
-      
+    
+    # Verify if enterprise payment sum is equal total sum. 
     if total_sum.payments_sum == enterprise.payments_sum
       return index + 1
     else

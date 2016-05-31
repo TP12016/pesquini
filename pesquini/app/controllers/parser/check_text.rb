@@ -38,6 +38,7 @@ module CheckText
 
     Preconditions.check_argument( text ) { is_not_nil }
 
+    # Verify text_date value and raise an exception in case is in wrong format.
     begin
       unless text_date = text.to_date()
         logger.error("Date in wrong format: #{text_date}")

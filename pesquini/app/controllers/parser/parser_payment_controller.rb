@@ -35,12 +35,12 @@ class Parser::ParserPaymentController < Parser::ParserController
   # @return [String] String in new format.
   def check_value( text )
 
+    # Verify text value and raise an exception in case is in wrong format.
     begin
       unless text = text.gsub( ",", " " ).to_f()
         logger.error("Payment value in wrong format: #{text}")
       end
-    end
-      
+    end  
     rescue StandardError::ArgumentError
       logger.error(" #{text}: " + Errno::EINVAL)
     end

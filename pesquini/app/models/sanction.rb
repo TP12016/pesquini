@@ -57,7 +57,14 @@ class Sanction < ActiveRecord::Base
     # [Interger] receives the full amount.
     total = Sanction.all.count
 
-    value = value * 100.0 / total
+    # Verify value result and raise an exception in case is in wrong format.
+    begin
+      unless value = value * 100.0 / total
+        logger.error("Value in wrong format: #{value}")
+      end
+    rescue StandardError::ArgumentError
+      logger.error(" #{value}: " + Errno::EINVAL)
+    end
 
     return value
 
