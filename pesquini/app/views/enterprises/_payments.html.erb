@@ -1,18 +1,32 @@
-        <div class =" lowercase-letter">
-    <% @payments.each_with_index do |p, index| %>
-          <h4><b><div class= "index_number"><%= @page_num*@per_page + index +1%></div></b></h4>
-          <h4> <b>Identificador: </b> <%= p.identifier %> </h4>
-          <h4> <b>Número do processo: </b> <%= p.process_number %> </h4>
-          <h4> <b>Valor inicial: </b> <%= number_to_currency(p.initial_value, unit: "R$ ", separator: ",", delimiter: ".")%> </h4>
-          <h4> <b>Data de assinatura: </b> <%= p.sign_date.strftime("%d/%m/%Y") %> </h4>
-          <h4> <b>Inicio do pagamento: </b> <%= p.start_date.strftime("%d/%m/%Y") %> </h4>
-          <h4> <b>Fim do pagamento: </b> <%= p.end_date.strftime("%d/%m/%Y") %> </h4>
-          <hr align="left">
-     <% end %>
+<!--
+File: _payments.html.erb
+Purpouse: Page for show payments informations
+License: GPL v3
+Pesquini Group 6.
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+-->
 
-      <% if @payments.empty? %>
-        <h3> Dados sobre pagamentos não informados </h3>
-      <% end %>
-      <%= will_paginate @payments,  renderer: BootstrapPagination::Rails %>
+<div class =" lowercase-letter">
 
-      </div>
+  <% @payments.each_with_index do |payment, index| %>
+
+    <h4><b><div class= "index_number">
+      <%= @page_num*@per_page + index +1%>
+    </div></b></h4>
+    <h4> <b>Identificador: </b> <%= payment.identifier %> </h4>
+    <h4> <b>Número do processo: </b> <%= payment.process_number %> </h4>
+    <h4> <b>Valor inicial: </b> <%= number_to_currency(payment.initial_value, unit: "R$ ", separator: ",", delimiter: ".")%> </h4>
+    <h4> <b>Data de assinatura: </b> <%= payment.sign_date.strftime("%d/%m/%Y") %> </h4>
+    <h4> <b>Inicio do pagamento: </b> <%= payment.start_date.strftime("%d/%m/%Y") %> </h4>
+    <h4> <b>Fim do pagamento: </b> <%= payment.end_date.strftime("%d/%m/%Y") %> </h4>
+    <hr align="left">
+
+  <% end %>
+
+  <% if @payments_per_page.empty? %>
+    <h3> Dados sobre pagamentos não informados </h3>
+  <% end %>
+  
+  <%= will_paginate @payments_per_page,  renderer: BootstrapPagination::Rails %>
+
+</div>

@@ -8,6 +8,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class Sanction < ActiveRecord::Base
 
+  # Associate sanction with enterprise, sanction type and state.
   belongs_to :enterprise, counter_cache: true
   belongs_to :sanction_type
   belongs_to :state
@@ -22,7 +23,6 @@ class Sanction < ActiveRecord::Base
   # @return [String] years.
   def self.all_years()
 
-    Preconditions.check_not_nil( years )
     years = ["Todos", 1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
              2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013,
              2014, 2015]
@@ -57,7 +57,14 @@ class Sanction < ActiveRecord::Base
     # [Interger] receives the full amount.
     total = Sanction.all.count
 
-    value = value * 100.0 / total
+    # Verify value result and raise an exception in case is in wrong format.
+    begin
+      unless value = value * 100.0 / total
+        logger.error("Value in wrong format: #{value}")
+      end
+    rescue StandardError::ArgumentError
+      logger.error(" #{value}: " + Errno::EINVAL)
+    end
 
     return value
 

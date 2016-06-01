@@ -1,3 +1,11 @@
+/*
+* File: enterprises.css
+* Purpose: Style for enterprises pages.
+* License: GPL v3.
+* Pesquini Group 6
+* FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+*/
+
 /********************************************************/
 /* Index -- enterprises */
 /********************************************************/
@@ -53,7 +61,7 @@
 /*********Mais***************/
 
 #enterprises_index .additional_search{
-  padding-top: 20px; 
+  padding-top: 20px;
 }
 
 

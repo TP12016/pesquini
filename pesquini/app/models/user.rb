@@ -32,8 +32,6 @@ class User < ActiveRecord::Base
   # @return [String] digest SHA1 to string.
   def User.digest( token )
 
-    Preconditions.check_not_nil( token )
-
     return Digest::SHA1.hexdigest( token.to_s )
   
   end

@@ -18,8 +18,6 @@ class State < ActiveRecord::Base
   def refresh!()
 
     Preconditions.check_not_nil( abbreviation )
-
-    # [String] receives found state.
     found_state_abbreviaton = State.find_by_abbreviation( self.abbreviation )
 
     return found_state_abbreviaton
@@ -32,9 +30,6 @@ class State < ActiveRecord::Base
   # @return [String] state abbreviation.
   def self.all_states()
 
-    Preconditions.check_not_nil( states_abbreviation )
-
-    # [String] keeps states abbreviation.
     states_abbreviation = ["BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC", "ES", "PR",
               "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC",
               "TO", "GO", "PE", "AP", "MS", "MT", "MA", "Não Informado"]
