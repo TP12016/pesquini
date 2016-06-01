@@ -8,13 +8,13 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 module SessionsHelper
 
-  # 
+  #
   # Method with user login information.
   # @param user [String] contains session user login information.
-  # 
+  #
   # @return [String] current user logged.
   def sign_in( user )
-	
+
     Preconditions.check_not_nil( user )
 
     # [String] receives user password.
@@ -30,27 +30,27 @@ module SessionsHelper
 	  self.current_user = user
 
     return current_user
-	
+
 	end
-	
-  # 
+
+  #
   # @deprecated  Method to return current user.
   # @param user [String] contains session user login information.
-  # 
+  #
   # @return [String] user logged.
 	def current_user=( user )
-    
+
     Preconditions.check_not_nil( user )
     @current_user = user
-  	
+
   end
-  	
-  # 
+
+  #
   # Method to find user by password.
-  # 
+  #
   # @return [String] found user.
   def current_user()
-	
+
     # [String] receives user password.
 	  remember_token = User.digest( cookies[:remember_token] )
 
@@ -58,42 +58,42 @@ module SessionsHelper
 	  @current_user ||= User.find_by( remember_token: remember_token )
 
     return @current_user
-  	
-  end
-  	
 
-  # 
+  end
+
+
+  #
   # Check's if signed in user is not null.
-  # 
+  #
   # @return [String] not null user.
   def signed_in?()
-    
+
     !current_user.nil?
 
     return current_user
-  	
+
   end
 
 
-  # 
+  #
   # Method that check user logged.
-  # 
+  #
   # @return [String] alert message in case user is no authorized.
   def authorize()
-    
-    unless signed_in?    
-      redirect_to "/signin'" alert: "Nao autorizado !" 
+
+    unless signed_in?
+      redirect_to "/signin'" alert: "Not authorized!"
     end
-    
+
   end
 
-  # 
+  #
   # Method to end session.
-  # 
+  #
   # @return [String] null user.
   def sign_out()
-    
-    current_user.update_attribute( :remember_token, 
+
+    current_user.update_attribute( :remember_token,
                                      User.digest( User.new_remember_token ) )
     cookies.delete( :remember_token )
 
@@ -101,7 +101,7 @@ module SessionsHelper
     self.current_user = nil
 
     return current_user
-    
+
   end
 
 end
