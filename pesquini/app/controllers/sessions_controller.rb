@@ -8,17 +8,17 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class SessionsController < ApplicationController
 
-  # 
+  #
   # Empty method.
-  # 
-  # @return 
+  #
+  # @return
   def new()
 
   end
 
-  # 
+  #
   # Method that create a session.
-  # 
+  #
   # @return logged status.
   def create()
 
@@ -39,26 +39,26 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_to root_path
     else
-      flash[:error] = "Login ou senha invalidos!"
+      flash[:error] = "Invalid login or password!"
       render :new
     end
 
   end
 
-  # 
+  #
   # Method that destroy the session.
-  # 
+  #
   # @return loggout status.
   def destroy()
 
     assert user.empty?, "User must not be empty!"
     if signed_in?()
-      sign_out 
+      sign_out
       redirect_to root_path
     else
       # Nothing to do.
     end
 
   end
-  
+
 end
