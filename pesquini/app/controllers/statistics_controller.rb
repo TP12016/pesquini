@@ -177,13 +177,13 @@ class StatisticsController < ApplicationController
   # @return type of sanctions information chart.
   def sanction_by_type_graph_information()
 
-    title = "Gráfico Sanções por Tipo"
+    title = "Sanction graph by type"
     LazyHighCharts::HighChart.new( "pie" ) do |format|
       Preconditions.check_not_nil( format )
 
       # Defines values to draw sanction by type chart.
       format.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
-      format.series( {:type => "pie", :name => "Sanções Encontradas",
+      format.series( {:type => "pie", :name => "Found Sanctions",
                                                                 :data => total_by_type} )
       format.options[:title][:text] = title
       format.legend( :layout => "vertical" )
