@@ -68,8 +68,8 @@ class StatisticsController < ApplicationController
   # @return enterprises by sanctions.
   def enterprise_group_ranking()
 
-    @quantidade = params[:sanctions_count]
-    @enterprises_group = Enterprise.where( sanctions_count: @quantidade )
+    @quantity_of_sanctions = params[:sanctions_count]
+    @enterprises_group = Enterprise.where( sanctions_count: @quantity_of_sanctions )
     @enterprises_group_paginate = @enterprises_group.paginate(
                                 :page => params[:page], :per_page => 10)
 
@@ -84,8 +84,8 @@ class StatisticsController < ApplicationController
   # @return enterprises by payments.
   def payment_group_ranking()
 
-    @quantidade = params[:payments_count]
-    @enterprises_payment = Enterprise.where( payments_count: @quantidade )
+    @quantity_of_payments = params[:payments_count]
+    @enterprises_payment = Enterprise.where( payments_count: @quantity_of_payments)
     @enterprises_payment_paginate = @enterprises_payment.paginate(
                                         :page => params[:page], :per_page => 10)
 
