@@ -33,8 +33,6 @@ class SanctionType < ActiveRecord::Base
   # @return [String] sanction type.
   def self.all_sanction_types()
 
-    Preconditions.check_not_nil( sanction_types )
-
     # [String] keeps the sanction type data.
     sanction_types = [
       [ "INIDONEIDADE - LEGISLAçãO ESTADUAL", "Inidoneidade - Legislação Estadual"],

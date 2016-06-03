@@ -2,9 +2,9 @@
   <div id="titulo_ranking"><h2>Lista de empresas com <%="#{@quantidade}"%> sanções</h2>
   <hr>
   </div>
-  <%@enterprises.each_with_index do |e, index| %>
-    <h3><%= index +1 %> )   <%= link_to e.corporate_name, e %><br></h3>
+  <%@enterprises_group_paginate.each_with_index do |enterprises_group, index| %>
+    <h3><%= index +1 %> )   <%= link_to enterprises_group.corporate_name, enterprises_group %><br></h3>
   <% end %>
-  <%= will_paginate @enterprises,  renderer: BootstrapPagination::Rails %>
+  <%= will_paginate @enterprises_group_paginate,  renderer: BootstrapPagination::Rails %>
 
 </div>

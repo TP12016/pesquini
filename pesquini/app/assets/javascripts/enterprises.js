@@ -11,10 +11,10 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
   var sanctions = document.getElementsByClassName("sanction-info");
   var payments = document.getElementsByClassName("payment-info");
 
-  var sanctions_btn = document.getElementById("sanction-info-btn");
-  var payments_btn = document.getElementById("payment-info-btn");
+  var sanctions_button = document.getElementById("sanction-info-btn");
+  var payments_button = document.getElementById("payment-info-btn");
 
-  if ($(sanctions_btn).hasClass("active"))
+  if ($(sanctions_button).hasClass("active"))
   {
     if (payments[0])
     payments[0].style.display = "none";
@@ -25,18 +25,18 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
       sanctions[0].style.display = "none";
   }
 
-  $(payments_btn).click(function () {
-    $(sanctions_btn).removeClass("active");
-    $(payments_btn).addClass('active');
+  $(payments_button).click(function () {
+    $(sanctions_button).removeClass("active");
+    $(payments_button).addClass('active');
 
     $(sanctions).fadeOut("slow");
     $(payments).delay(500).fadeIn("slow");
 
   });
 
-  $(sanctions_btn).on('click', function () {
-    $(payments_btn).removeClass("active");
-    $(sanctions_btn).addClass('active');
+  $(sanctions_button).on('click', function () {
+    $(payments_button).removeClass("active");
+    $(sanctions_button).addClass('active');
 
     $(payments).fadeOut("slow");
     $(sanctions).delay(500).fadeIn("slow");

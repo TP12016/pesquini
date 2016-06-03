@@ -10,6 +10,7 @@ PERCENTAGE = 100
 
 class Sanction < ActiveRecord::Base
 
+  # Associate sanction with enterprise, sanction type and state.
   belongs_to :enterprise, counter_cache: true
   belongs_to :sanction_type
   belongs_to :state
@@ -60,7 +61,15 @@ class Sanction < ActiveRecord::Base
     # [Interger] receives the full amount.
     total = Sanction.all.count
 
-    value = value * PERCENTAGE / total
+
+    # Verify value result and raise an exception in case is in wrong format.
+    begin
+      unless value = value * PERCENTAGE / total
+        logger.error("Value in wrong format: #{value}")
+      end
+    rescue StandardError::ArgumentError
+      logger.error(" #{value}: " + Errno::EINVAL)
+    end
 
     return value
 

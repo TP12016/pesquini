@@ -1,3 +1,11 @@
+/*
+* File: main.css
+* Purpose: Style for main page.
+* License: GPL v3.
+* Pesquini Group 6
+* FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+*/
+
 @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400);
 
@@ -115,8 +123,8 @@ font-weight: 900;
 	background-color: #222222 !important;
 	padding: 0 !important;
 }
-.navbar-default .navbar-nav > .active > a, 
-.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
 	color: #FCAC45 !important;
 	background-color: transparent;
@@ -126,7 +134,7 @@ font-weight: 900;
 .navbar-toggle {
 	border-radius: 0;
 	}
-.navbar-default .navbar-toggle:hover, 
+.navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
 	background-color: #FCAC45;
 	border-color: #FCAC45;
@@ -251,7 +259,7 @@ ul.about-list li{
 	line-height: 30px;
 	font-family: 'Open Sans', sans-serif;
 }
-ul.about-list li span{ 
+ul.about-list li span{
 	margin-right: 10px;
 }
 
@@ -354,7 +362,7 @@ img.img-circle.search-img {
 	transition: all 0.5s;
 }
 
-.owl-theme .owl-controls .owl-page.active span, 
+.owl-theme .owl-controls .owl-page.active span,
 .owl-theme .owl-controls.clickable .owl-page:hover span {
 	filter: Alpha(Opacity=100);
 	opacity: 1;
@@ -503,7 +511,7 @@ html, body, .padding-page-top {
 	height:100%;
 }
 body > .padding-page-top {
- height: auto; min-height: 100%; 	
+ height: auto; min-height: 100%;
 }
 
 .padding-page-top { padding-bottom: 5em; }

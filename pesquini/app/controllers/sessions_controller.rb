@@ -35,6 +35,7 @@ class SessionsController < ApplicationController
     # [String] Keep the logged user.
     user = User.find_by( login: login )
 
+    # Sign in user by login and password.
     if user && user.authenticate( password )
       sign_in user
       redirect_to root_path

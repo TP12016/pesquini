@@ -1,23 +1,35 @@
-        <div class =" lowercase-letter">
-          <% @sanctions.each_with_index do |p, index| %>
-            <h4><b><div class= "index_number"><%= @page_num*@per_page + index +1%></div></b></h4>
-            <h4> <b>Órgao Sancionador: </b> <%= p.sanction_organ.downcase! %> </h4>
-            <h4> <b> Número do processo: </b> <%= p.process_number %> </h4>
-            <h4> <b>Data de Inicio da Sanção: </b> <%= p.initial_date.nil? ? "Dado nao informado" :p.initial_date.strftime("%d/%m/%Y") %> </h4>
-            <h4> <b> Data Final da Sanção: </b> <%= p.final_date.nil? ? "Dado nao informado"  :p.final_date.strftime("%d/%m/%Y") %> </h4>
-            <h4> <b> UF: </b> <%= p.state.nil? ? "Dado nao informado" : p.state.abbreviation %> </h4>
-            <h4> <b> Tipo Sanção: </b> <%= p.sanction_type.nil? ? "Dado não informado" : p.sanction_type.description.downcase! %> </h4>
-            <% if @enterprise.payment_after_sanction? %>
-              <h4>Contrato pós Sanção? : <span class="glyphicon glyphicon-ok"> </h4>
-            <% else %>
-              <h4>Contrato pós Sanção? :   <span class="glyphicon glyphicon-remove"> </h4>
-            <% end %>
-            <hr align="left">
-         <% end %>
+<!--
+File: _sanctions.html.erb
+Purpouse: Page for show sanctions informations.
+License: GPL v3
+Pesquini Group 6.
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+-->
 
-         <% if @sanctions.empty? %>
-           <h3> Dados sobre sanções não informados </h3>
-         <% end %>
-         <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
+<div class =" lowercase-letter">
+  <% @sanctions.each_with_index do |sanction, index| %>
+    
+    <h4><b><div class= "index_number">
+      <%= @page_number*@per_page + index +1%>
+    </div></b></h4>
+    <h4> <b>Órgao Sancionador: </b> <%= sanction.sanction_organ.downcase! %> </h4>
+    <h4> <b> Número do processo: </b> <%= sanction.process_number %> </h4>
+    <h4> <b>Data de Inicio da Sanção: </b> <%= sanction.initial_date.nil? ? "Dado nao informado" :sanction.initial_date.strftime("%d/%m/%Y") %> </h4>
+    <h4> <b> Data Final da Sanção: </b> <%= sanction.final_date.nil? ? "Dado nao informado"  :sanction.final_date.strftime("%d/%m/%Y") %> </h4>
+    <h4> <b> UF: </b> <%= sanction.state.nil? ? "Dado nao informado" : sanction.state.abbreviation %> </h4>
+    <h4> <b> Tipo Sanção: </b> <%= sanction.sanction_type.nil? ? "Dado não informado" : sanction.sanction_type.description.downcase! %> </h4>
+    <% if @enterprise.payment_after_sanction? %>
+    <h4>Contrato pós Sanção? : <span class="glyphicon glyphicon-ok"> </h4>
+    <% else %>
+    <h4>Contrato pós Sanção? :   <span class="glyphicon glyphicon-remove"> </h4>
+    <% end %>
+    <hr align="left">
+  <% end %>
 
-       </div>
+  <% if @sanctions.empty? %>
+    <h3> Dados sobre sanções não informados </h3>
+  <% end %>
+  
+  <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
+
+</div>

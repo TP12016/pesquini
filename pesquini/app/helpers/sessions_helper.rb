@@ -17,17 +17,14 @@ module SessionsHelper
 
     Preconditions.check_not_nil( user )
 
-    # [String] receives user password.
-		remember_token = User.new_remember_token
+    remember_token = User.new_remember_token
+    cookies.permanent[:remember_token] = remember_token
+    user.update_attribute( :remember_token, User.digest( remember_token ) )
+    self.current_user = user
 
-    # [String] keep the user logged in.
-		cookies.permanent[:remember_token] = remember_token
+    return current_user
 
-    # [String] update user information.
-		user.update_attribute( :remember_token, User.digest( remember_token ) )
-
-    # [String] check the correct user logged in.
-	  self.current_user = user
+    end
 
     return current_user
 
@@ -38,29 +35,24 @@ module SessionsHelper
   # @param user [String] contains session user login information.
   #
   # @return [String] user logged.
-	def current_user=( user )
-
+    def current_user=( user )
     Preconditions.check_not_nil( user )
     @current_user = user
-
   end
+
 
   #
   # Method to find user by password.
   #
   # @return [String] found user.
   def current_user()
-
     # [String] receives user password.
-	  remember_token = User.digest( cookies[:remember_token] )
-
-    # [String] keeps user foud by it's password.
-	  @current_user ||= User.find_by( remember_token: remember_token )
+    remember_token = User.digest( cookies[:remember_token] )
+    @current_user ||= User.find_by( remember_token: remember_token )
 
     return @current_user
 
   end
-
 
   #
   # Check's if signed in user is not null.
@@ -84,7 +76,6 @@ module SessionsHelper
     unless signed_in?
       redirect_to "/signin'" alert: "Not authorized!"
     end
-
   end
 
   #
@@ -94,10 +85,8 @@ module SessionsHelper
   def sign_out()
 
     current_user.update_attribute( :remember_token,
-                                     User.digest( User.new_remember_token ) )
+    User.digest( User.new_remember_token ) )
     cookies.delete( :remember_token )
-
-    # [String] sign out user.
     self.current_user = nil
 
     return current_user
@@ -105,3 +94,4 @@ module SessionsHelper
   end
 
 end
+

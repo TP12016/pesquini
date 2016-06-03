@@ -8,65 +8,30 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class Parser::ParserCeiController < Parser::ParserController
 
-  require 'csv' 
+  require 'csv'
+  include ParserCheckSave
+  include CheckText
 
   # Keeps the .csv file.
   @@filename = 'parser_data/CEIS.csv'
 
   # Authorize filter only with that caracteristics checked.
-  before_filter :authorize, only: [:check_nil_ascii, :check_date, :import, 
-                                       :build_state, :build_sanction_type, 
-                                       :build_enterprise, :build_sanction, 
+  before_filter :authorize, only: [:check_nil_ascii, :check_date, :import,
+                                       :build_state, :build_sanction_type,
+                                       :build_enterprise, :build_sanction,
                                        :check_and_save]
-                                   
-  # 
+
+  #
   # Empty method.
-  # 
-  # @return 
+  #
+  # @return
   def index()
 
   end
 
-  # 
-  # Method that check's for empty ascii caracters in data file.
-  # @param text [String] Keeps the string with the upcase form.
-  # 
-  # @return [String] text in upcase form.
-  def check_nil_ascii( text )
-
-    Preconditions.check_argument( text ) { is_not_nil }
-    
-    if text.include?( "\u0000" )
-      text_format = "Não Informado"
-    else
-      text_format = text.upcase()
-    end
-
-    return text_format
-
-  end
-
-  # 
-  # Method that check's the sanction date.
-  # @param text [String] receives date from parser.
-  # 
-  # @return [String] text in date format.
-  def check_date( text )
-
-    Preconditions.check_argument( text ) { is_not_nil }
-    begin
-      text_date = text.to_date()
-    rescue
-      text_date = nil
-    end
-
-    return text_date
-
-  end
-  
-  # 
+  #
   # Method that import data from .csv file.
-  # 
+  #
   # @return [String] sanction object.
   def import()
 
@@ -75,33 +40,34 @@ class Parser::ParserCeiController < Parser::ParserController
 
       Preconditions.check_not_nil( data )
       data = row.to_hash
-      unless data["Tipo de Pessoa"].match( "J|j" ).nil?()
+      if not data["Tipo de Pessoa"].match( "J|j" ).nil?()
 
         Preconditions.check_not_nil( sanction_type )
 
         # [String] Keeps the sanction type data.
-        sanction_type = build_sanction_type( data ) 
+        sanction_type = build_sanction_type( data )
 
         Preconditions.check_not_nil( state )
 
-        #[String] Keeps the state data.      
+        # [String] Keeps the state data.
         state = build_state( data )
 
         Preconditions.check_not_nil( enterprise )
 
-        # [String] Keeps the enterprise data.                     
+        # [String] Keeps the enterprise data.
         enterprise = build_enterprise( data )
 
-        return build_sanction( data, sanction_type, state, enterprise )
+        build_sanction( data, sanction_type, state, enterprise )
+
       end
     end
 
   end
-   
-  # 
+
+  #
   # Method that take and create the state.
   # @param row_data [String] Keeps the state data from CEI.
-  # 
+  #
   # @return [String] Save the new state created.
   def build_state( row_data )
 
@@ -112,17 +78,17 @@ class Parser::ParserCeiController < Parser::ParserController
     new_state = State.new()
 
     new_state.abbreviation = check_nil_ascii( row_data["UF Órgão Sancionador"] )
-    
+
     check_and_save( new_state )
 
     return new_state
 
   end
-  
-  # 
+
+  #
   # Method that take and create the sanction.
   # @param row_data [String] Keeps sanction type data from CEI.
-  # 
+  #
   # @return [String] Save new_sanction_type created.
   def build_sanction_type( row_data )
 
@@ -130,20 +96,19 @@ class Parser::ParserCeiController < Parser::ParserController
     Preconditions.check_not_nil( new_sanction_type )
 
     # [String] Keeps the new sanction type created.
-    new_sanction_type = SanctionType.new() 
-       
-    new_sanction_type.description = check_nil_ascii( row_data["Tipo Sanção"] )
+    new_sanction_type = SanctionType.new()
 
+    new_sanction_type.description = check_nil_ascii( row_data["Tipo Sanção"] )
     check_and_save( new_sanction_type )
 
     return new_sanction_type
 
   end
- 
-  # 
+
+  #
   # Method that take and create the the enterprise.
   # @param row_data [String] Keeps enterprise data from CEI.
-  # 
+  #
   # @return [String] Save new enterprise created.
   def build_enterprise( row_data )
 
@@ -154,31 +119,30 @@ class Parser::ParserCeiController < Parser::ParserController
     new_enterprise = Enterprise.new()
 
     new_enterprise.cnpj = row_data["CPF ou CNPJ do Sancionado"]
-    # e.trading_name = check_nil_ascii(row_data["Nome Fantasia - Cadastro Receita"])
     new_enterprise.corporate_name = check_nil_ascii( row_data["Razão Social - Cadastro Receita"] )
-
     check_and_save( new_enterprise )
 
     return new_enterprise
 
   end
 
-  # 
+  #
   # Method that create sanction.
   # @param row_data [String] Keeps sanction data from CEI.
   # @param sanction_type [String] Contain information from sanction type created.
   # @param state [String] Contain information from state created.
   # @param enterprise [String] Contain information from enterprise type created.
-  # 
+  #
   # @return [String] Save new sanction created.
   def build_sanction( row_data, sanction_type, state, enterprise )
-    
+
     Preconditions.check_argument( row_data, sanction_type, state, enterprise ) { is_not_nil }
-    Preconditions.check_not_nil( new_sanction 
-      )
+    Preconditions.check_not_nil( new_sanction )
+
     # [String] Keeps information for sanction created.
     new_sanction = Sanction.new()
 
+    # Takes sanction values to build new sanction.
     new_sanction.initial_date = check_date( row_data["Data Início Sanção"] )
     new_sanction.final_date = check_date( row_data["Data Final Sanção"] )
     new_sanction.process_number = check_nil_ascii( row_data["Número do processo"] )
@@ -189,25 +153,6 @@ class Parser::ParserCeiController < Parser::ParserController
     check_and_save( new_sanction )
 
     return new_sanction
-
-  end
-
-  
-  # 
-  # Method that check and save the data.
-  # @param check [String] Use to check content.
-  # 
-  # @return [String] Save the content after it has been checked.
-  def check_and_save( check )
-
-    Preconditions.check_argument( check ) { is_not_nil }
-    begin
-      check.save!
-      check 
-    rescue ActiveRecord::RecordInvalid
-      check = check .refresh!
-      check 
-    end
 
   end
 

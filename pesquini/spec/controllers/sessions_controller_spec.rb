@@ -16,25 +16,25 @@ RSpec.configure do |config|
 
 end
 
-
+#This unit test for testing login controller
 RSpec.describe SessionsController, :type => :controller do
 
-  user = User.new( login: "test_login", password: "test_password" )
+  user = User.new( login: "logintTest", password: "test123" )
   user.save
 
-  subject { post :create, :session => {:login => "test_login_", :password => "test_password"} }
+  subject { post :create, :session => {:login => "test", :password => "test123"} }
 
   describe   "GET" do
 
     describe '#create' do
 
       it "should log in user with correct login and password" do
-        post :create, :session => {:login => "test_login", :password => "test_password"}
+        post :create, :session => {:login => "logintTest", :password => "test123"}
         expect( response ).to redirect_to( root_path )
       end
 
       it "shoul show a message of error when the login or password is invalid" do
-        post :create, :session => {:login => "test_login", :password => "test_password_"}
+        post :create, :session => {:login => "logintTest", :password => "test"}
         flash[:error].should eq( "Invalid login or password!" )
       end
 
@@ -42,10 +42,11 @@ RSpec.describe SessionsController, :type => :controller do
 
   end
 
+#This unit test for testing logout controller
   describe "#destroy" do
 
     it "should sign out the user" do
-      post :create, :session => {:login => "test_login", :password => "test_password"}
+      post :create, :session => {:login => "logintTest", :password => "test123"}
       get :destroy
       expect( session[:user_id] ).to be( nil )
       expect( response ).to redirect_to( root_path )
