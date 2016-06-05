@@ -50,6 +50,7 @@ class StatisticsController < ApplicationController
     @all = false
 
     Preconditions.check_not_nil( :sanction_years )
+    
     if params[:sanction_years]
       @all = true
       @enterprises_featured_payments = Enterprise.featured_payments.paginate(
@@ -156,6 +157,7 @@ class StatisticsController < ApplicationController
 
     @chart = sanction_by_type_graph_information()
 
+    # If if not state clene a state list to use.
     if ( !@states )
       @states = @@states_list.clone
       @states.unshift( "All" )
@@ -208,7 +210,11 @@ class StatisticsController < ApplicationController
 
     # [String] array of string that keep the results of sanctions by state.
     sanction_by_state_results = []
+
+    # Receives years that has sanction.
     @years = @@sanction_years
+
+    # Takes states that has sanction in state list to show by year.
     @@states_list.each() do |sanction_state|
 
 
@@ -221,6 +227,7 @@ class StatisticsController < ApplicationController
       # [Integer] array with year that has sanctions.
       selected_year = []
 
+      # Verify if year has sanction by state.
       if( params[:year_].to_i() != 0 )
         sanctions_by_state.each do |sanction_state|
           if( sanction_state.initial_date.year() ==  params[:year_].to_i() )
@@ -256,6 +263,7 @@ class StatisticsController < ApplicationController
     # [String] receives state by its abbreviation.
     state = State.find_by_abbreviation( params[:state_] )
 
+    # Takes sancton by type in list to show by state..
     @@sanction_type_list.each do |sanction_type_|
 
       Preconditions.check_not_nil( sanction_type_ )
