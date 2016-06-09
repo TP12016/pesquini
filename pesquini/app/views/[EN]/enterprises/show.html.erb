@@ -1,0 +1,42 @@
+<!--
+# File: show.html.erb
+# Purpouse: Enterprises view layer.
+# License: GPL v3
+# Pesquini Group 6.
+# FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+-->
+
+<%= javascript_include_tag("pagination.js") %>
+
+<div id="enterprises_show">
+  <div class="container">
+
+    <div class="section-title">
+      <h2><%= @enterprise.corporate_name %> </h2><br>
+      <h4> <b>Registration of Corporate Taxpayers:  </b><%= @enterprise.cnpj %> </h4>
+      <h4> <b>Position in <%= link_to "group", controller: 'statistics', action: 'most_sanctioned_ranking' %> of most sanctioned enterprise ranking: </b><%= @position %> </h4>
+      <h4> <b>Position in ranking of enterprises that received more payments funds: </b><%= 
+      @payment_position %> </h4>
+
+    </div>
+
+    <span id="title-hr"><hr></span>
+
+    <div id ="enterprises_selection">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active" id="sanction-info-btn"><a href="#">Sanctions</a></li>
+        <li role="presentation" id="payment-info-btn"><a href="#">Payments</a></li>
+      </ul>
+    </div>
+
+    <div class="sanction-info">
+      <%= render "sanctions" %>
+    </div>
+
+
+     <div class="payment-info">
+      <%= render "payments" %>
+     </div>
+
+  </div>
+</div>
