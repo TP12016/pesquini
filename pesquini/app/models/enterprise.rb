@@ -123,18 +123,18 @@ class Enterprise < ActiveRecord::Base
     orderedSanc = self.featured_sanctions
 
     # [String] order sanctions in group.
-    groupedSanc_uniq = orderedSanc.uniq()
-    groupedSanc = groupedSanc_uniq.group_by( &:sanctions_count ).to_a
+    groupedSanctions_uniqueness = orderedSanctions.uniqueness()
+    groupedSanctions = groupedSanctions_uniqueness.group_by( &:sanctions_count ).to_a
 
     # Organize sanctions by group.
-    groupedSanc.each_with_index do |qnt_sanctions, index|
+    groupedSanctions.each_with_index do |quantity_sanctions, index|
 
-      Preconditions.check_not_nil( qnt_sanctions )
+      Preconditions.check_not_nil( quantity_sanctions )
       Preconditions.check( index ) {has_type( Integer ) and
                                                 satisfies( ">= 0" ) { index >= 0 }}
 
       # Verify if enterprise sanctions is equal the number of sanctions.
-      if qnt_sanctions[0] == enterprise.sanctions_count
+      if quantity_of_sanctions[0] == enterprise.sanctions_count
         return index + 1
       else
         # Nothing to do.
@@ -155,7 +155,7 @@ class Enterprise < ActiveRecord::Base
 
     # [String] sort sanctions counted.
     sorted_sanctions = Enterprise.all.sort_by{
-              |qnt_sanctions_ranking| qnt_sanctions_ranking.sanctions_count }
+              |quantity_of_sanctions_ranking| quantity_of_sanctions_ranking.sanctions_count }
 
     Preconditions.check_not_nil( sorted_sanctions )
 
@@ -166,7 +166,7 @@ class Enterprise < ActiveRecord::Base
     Preconditions.check_not_nil( sorted_group_sanctions )
 
     # Sort sanctions in groups.
-    sorted_group_sanctions.each do |qnt_group_sanctions|
+    sorted_group_sanctions.each do |qauntity_group_sanctions|
       enterprise_group << qnt_group_sanctions[0]
       enterprise_group_count << qnt_group_sanctions[1].count
     end

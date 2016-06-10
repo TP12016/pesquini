@@ -1,0 +1,41 @@
+<!--
+File: _header.html.erb
+Purpouse: Page that applies header in all pages
+License: GPL v3
+Pesquini Group 6.
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+-->
+
+<!-- Navigation
+  ==========================================-->
+<nav id="tf-menu" class="navbar navbar-default navbar-fixed-top on">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="but" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!--<a class="navbar-brand" href="index.html">PesquIni</a>-->
+      <%= link_to image_tag('pesquini_logo3.png'), root_path, method: :get %>
+
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <!--<li><a href="#tf-services" class="page-scroll">Rankings</a></li>-->
+        <li><%= link_to "Search", root_path(:anchor => "tf-search") %></li>
+        <li><%= link_to "Statistic", root_path(:anchor => "tf-services") %></li>
+        <li><%= link_to "About", root_path(:anchor => "tf-clients")%></li>
+        <li><%= link_to "Know More", root_path(:anchor => "tf-about")%></li>
+        <% if signed_in? %>
+          <li><%= link_to "Logout", signout_path, method: "delete" %></li>
+        <% end %>
+        <!--<li>< %= link_to "Enterprises", enterprises_path %></li>-->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

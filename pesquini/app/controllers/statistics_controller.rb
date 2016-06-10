@@ -50,6 +50,7 @@ class StatisticsController < ApplicationController
     @all = false
 
     Preconditions.check_not_nil( :sanction_years )
+    
     if params[:sanction_years]
       @all = true
       @enterprises_featured_payments = Enterprise.featured_payments.paginate(
@@ -68,8 +69,8 @@ class StatisticsController < ApplicationController
   # @return enterprises by sanctions.
   def enterprise_group_ranking()
 
-    @quantidade = params[:sanctions_count]
-    @enterprises_group = Enterprise.where( sanctions_count: @quantidade )
+    @quantity_of_sanctions = params[:sanctions_count]
+    @enterprises_group = Enterprise.where( sanctions_count: @quantity_of_sanctions )
     @enterprises_group_paginate = @enterprises_group.paginate(
                                 :page => params[:page], :per_page => 10)
 
@@ -84,8 +85,8 @@ class StatisticsController < ApplicationController
   # @return enterprises by payments.
   def payment_group_ranking()
 
-    @quantidade = params[:payments_count]
-    @enterprises_payment = Enterprise.where( payments_count: @quantidade )
+    @quantity_of_payments = params[:payments_count]
+    @enterprises_payment = Enterprise.where( payments_count: @quantity_of_payments)
     @enterprises_payment_paginate = @enterprises_payment.paginate(
                                         :page => params[:page], :per_page => 10)
 
@@ -156,6 +157,7 @@ class StatisticsController < ApplicationController
 
     @chart = sanction_by_type_graph_information()
 
+    # If if not state clene a state list to use.
     if ( !@states )
       @states = @@states_list.clone
       @states.unshift( "All" )
@@ -177,13 +179,13 @@ class StatisticsController < ApplicationController
   # @return type of sanctions information chart.
   def sanction_by_type_graph_information()
 
-    title = "Gráfico Sanções por Tipo"
+    title = "Sanction graph by type"
     LazyHighCharts::HighChart.new( "pie" ) do |format|
       Preconditions.check_not_nil( format )
 
       # Defines values to draw sanction by type chart.
       format.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
-      format.series( {:type => "pie", :name => "Sanções Encontradas",
+      format.series( {:type => "pie", :name => "Found Sanctions",
                                                                 :data => total_by_type} )
       format.options[:title][:text] = title
       format.legend( :layout => "vertical" )
@@ -208,7 +210,11 @@ class StatisticsController < ApplicationController
 
     # [String] array of string that keep the results of sanctions by state.
     sanction_by_state_results = []
+
+    # Receives years that has sanction.
     @years = @@sanction_years
+
+    # Takes states that has sanction in state list to show by year.
     @@states_list.each() do |sanction_state|
 
 
@@ -221,6 +227,7 @@ class StatisticsController < ApplicationController
       # [Integer] array with year that has sanctions.
       selected_year = []
 
+      # Verify if year has sanction by state.
       if( params[:year_].to_i() != 0 )
         sanctions_by_state.each do |sanction_state|
           if( sanction_state.initial_date.year() ==  params[:year_].to_i() )
@@ -256,6 +263,7 @@ class StatisticsController < ApplicationController
     # [String] receives state by its abbreviation.
     state = State.find_by_abbreviation( params[:state_] )
 
+    # Takes sancton by type in list to show by state..
     @@sanction_type_list.each do |sanction_type_|
 
       Preconditions.check_not_nil( sanction_type_ )

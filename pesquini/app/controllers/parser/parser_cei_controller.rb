@@ -11,6 +11,7 @@ class Parser::ParserCeiController < Parser::ParserController
   require 'csv'
   include ParserCheckSave
   include CheckText
+  require 'logger'
 
   # Keeps the .csv file.
   @@filename = 'parser_data/CEIS.csv'
@@ -37,6 +38,8 @@ class Parser::ParserCeiController < Parser::ParserController
 
     CSV.foreach( @@filename, :headers => true, :col_sep => "\t",
                  :encoding => 'ISO-8859-1' ) do |row|
+
+      logger.info("importing CSV content")
 
       Preconditions.check_not_nil( data )
       data = row.to_hash
@@ -71,6 +74,7 @@ class Parser::ParserCeiController < Parser::ParserController
   # @return [String] Save the new state created.
   def build_state( row_data )
 
+    logger.info("building state")
     Preconditions.check_argument( row_data ) { is_not_nil }
     Preconditions.check_not_nil( new_state )
 
@@ -135,6 +139,8 @@ class Parser::ParserCeiController < Parser::ParserController
   #
   # @return [String] Save new sanction created.
   def build_sanction( row_data, sanction_type, state, enterprise )
+
+    logger.info("building sanction object")
 
     Preconditions.check_argument( row_data, sanction_type, state, enterprise ) { is_not_nil }
     Preconditions.check_not_nil( new_sanction )

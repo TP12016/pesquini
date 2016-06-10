@@ -6,7 +6,7 @@
   <hr>
   </div>
   <% @enterprise_group.each_with_index do |e, index| %>
-    <% qtde = @enterprise_group_count[index]%>
-    <h3><%= index +1 %> )   <%= link_to "Grupo de Empresas com #{e} sanções - (#{qtde})", controller: 'statistics', action: 'enterprise_group_ranking', sanctions_count: e %><br></h3>
+    <% quantity = @enterprise_group_count[index]%>
+    <h3><%= index +1 %> )   <%= link_to "Grupo de Empresas com #{e} sanções - (#{quantity})", controller: 'statistics', action: 'enterprise_group_ranking', sanctions_count: e %><br></h3>
   <% end %>
 </div>

@@ -17,6 +17,7 @@ module SessionsHelper
 
     Preconditions.check_not_nil( user )
 
+    # Log user in application verifying the token.
     remember_token = User.new_remember_token
     cookies.permanent[:remember_token] = remember_token
     user.update_attribute( :remember_token, User.digest( remember_token ) )
@@ -46,8 +47,10 @@ module SessionsHelper
   #
   # @return [String] found user.
   def current_user()
+
     # [String] receives user password.
     remember_token = User.digest( cookies[:remember_token] )
+
     @current_user ||= User.find_by( remember_token: remember_token )
 
     return @current_user
@@ -84,6 +87,7 @@ module SessionsHelper
   # @return [String] null user.
   def sign_out()
 
+    # Log  out user by deleting session token.
     current_user.update_attribute( :remember_token,
     User.digest( User.new_remember_token ) )
     cookies.delete( :remember_token )
