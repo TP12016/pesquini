@@ -1,13 +1,12 @@
 <!--
-# File: index.html.erb
-# Purpouse: Index page of enterprises feature.
-# License: GPL v3
-# Pesquini Group 6.
-# FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+File: index.html.erb
+Purpouse: Index page of enterprises feature.
+License: GPL v3
+Pesquini Group 6.
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 -->
 
 <div id="enterprises_index">
-
 
   <div class="search_form">
       <div class="container">
@@ -19,15 +18,13 @@
         <div class="search_form_enterprises">
           <h1>Ferramenta de busca</h1>
           <hr>
+
           <%= search_form_for @search do |f| %>
             <%= f.label :corporate_name_cont, "Nome ou CNPJ:" %>
             <%= f.search_field :corporate_name_cont%>
             <%= f.submit %>
           <% end %>
- <!--         <div class="additional_search">
-            <i class="fa fa-angle-double-down fa_down"></i>
-            <h4><strong>Mais opções de busca</strong></h4>
-          </div>-->
+
         </div>
 
     </div>
@@ -48,12 +45,15 @@
         <h1> Lista das empresas encontradas</h1>
         <hr>
       </div>
+
       <% @enterprises.each do |p| %>
         <span class="same_line">  <h3>Empresa:</h3><%= link_to p.corporate_name, p %>  </span>
         <span class="same_line">  <h3>CNPJ:</h3> <%= p.cnpj %>  </span>
         <hr>
       <% end %>
+      
     <% end %>
+
    <div class="pagination">
       <%= will_paginate @enterprises, renderer: BootstrapPagination::Rails %>
     </div>

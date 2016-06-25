@@ -12,6 +12,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
     <h4><b><div class= "index_number">
       <%= @page_number*@per_page + index +1%>
     </div></b></h4>
+    
     <h4> <b>Órgao Sancionador: </b> <%= sanction.sanction_organ.downcase! %> </h4>
     <h4> <b> Número do processo: </b> <%= sanction.process_number %> </h4>
     <h4> <b>Data de Inicio da Sanção: </b> <%= sanction.initial_date.nil? ? "Dado nao informado" :sanction.initial_date.strftime("%d/%m/%Y") %> </h4>
