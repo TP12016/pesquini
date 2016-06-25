@@ -11,6 +11,7 @@ class Parser::ParserPaymentController < Parser::ParserController
   require 'csv'
   require 'logger'
   require 'open-uri'
+  require 'logger'
   include CheckAndSave
 
   # Authorize filter only with that caracteristics checked.
@@ -59,6 +60,8 @@ class Parser::ParserPaymentController < Parser::ParserController
 
     Enterprise.find_each() do |enterprise|
 
+      logger.info("acessing url to site with csv file.")
+
       Preconditions.check_not_nil( url )
 
       # [String] Keeps the url from site that has contratos.csv file.
@@ -76,7 +79,10 @@ class Parser::ParserPaymentController < Parser::ParserController
         # Calls method that creates new payment. 
         csv()
 
+        logger.info("enterprise data imported.")
+
       rescue
+        logger.info("counting enterprises without payment.")
         constante = constante + 1
       end
     end
