@@ -100,6 +100,8 @@ class Parser::ParserPaymentController < Parser::ParserController
 
     csv.each_with_index() do |row, i|
 
+      logger.info("start creating new payment.")
+
       assert row.empty?, "row must not be empty!"
 
       # [String] keeps payment created.
