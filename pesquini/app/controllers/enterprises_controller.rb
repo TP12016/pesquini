@@ -87,10 +87,11 @@ class EnterprisesController < ApplicationController
 
     payment_position.each_with_index do |total_sum, index|
 
-      logger.debbug("finding by index.")
+      logger.debug("finding by index.")
 
       # Raise an exception in case total sum is nil.
       if total_sum.nil?
+        logger.error("total_sum is nil and should not be.")
         raise "total_sum should not be nil" 
       end
 
