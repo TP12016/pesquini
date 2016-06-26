@@ -8,7 +8,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class StatisticsController < ApplicationController
 
-  require  'logger'
+  require 'logger'
 
   # [String] Keeps list of all states.
   @@states_list = State.all_states
@@ -107,7 +107,7 @@ class StatisticsController < ApplicationController
     gon.states = @@states_list
 
     # [String] keeps total data by state.
-    gon.dados = total_by_state
+    gon.data = total_by_state
 
     # [String] keeps graph title.
     title = "Chart Sanctions for State"
@@ -126,26 +126,33 @@ class StatisticsController < ApplicationController
   def sanction_by_state_graph_information()
 
     title = "Chart Sanctions for State"
+
     @chart = LazyHighCharts::HighChart.new( "graph" ) do |parameters|
-    Preconditions.check_not_nil( parameters )
-    parameters.title( :text => title )
-    if( params[:year_].to_i() != 0 )
-      parameters.title(:text => params[:year_].to_i() )
-    else
-       # Nothing to do.
+
+      logger.info("setting information for sanction by state graph.")
+
+      Preconditions.check_not_nil( parameters )
+
+      parameters.title( :text => title )
+      if( params[:year_].to_i() != 0 )
+        parameters.title(:text => params[:year_].to_i() )
+      else
+        logger.debug("params #{:year}")
+      end
+
+      logger.info("setting chart information.")
+
+      # Defines values to draw sanction by state chart.
+      parameters.xAxis( :categories => @@states_list )
+      parameters.series( :name => "Number of Sanctions",
+                                  :yAxis => 0, :data => total_by_state )
+      parameters.yAxis [{:title => {:text => "Sanctions", :margin => 30} }, ]
+      parameters.legend( :align => "right", :verticalAlign => "top", :y => 75,
+                :x => -50, :layout => "vertical", )
+      parameters.chart( {:defaultSeriesType => "column"} )
+
+      return parameters
     end
-
-    # Defines values to draw sanction by state chart.
-    parameters.xAxis( :categories => @@states_list )
-    parameters.series( :name => "Number of Sanctions",
-                                :yAxis => 0, :data => total_by_state )
-    parameters.yAxis [{:title => {:text => "Sanctions", :margin => 30} }, ]
-    parameters.legend( :align => "right", :verticalAlign => "top", :y => 75,
-              :x => -50, :layout => "vertical", )
-    parameters.chart( {:defaultSeriesType => "column"} )
-
-    return parameters
-  end
 
   end
 
@@ -161,7 +168,7 @@ class StatisticsController < ApplicationController
 
     # If is not state clone a state list to use.
     if ( !@states )
-      logger.debug("cloning a list.")
+      logger.debug("cloning a list #{@@states_list.clone}.")
       @states = @@states_list.clone
       @states.unshift( "All" )
     else
@@ -244,7 +251,7 @@ class StatisticsController < ApplicationController
           if( sanction_state.initial_date.year() ==  params[:year_].to_i() )
             selected_year << sanction_state
           else
-            logger.debug("year without sanction.")
+            logger.debug("year without sanction #{:year}")
           end
       end
         sanction_by_state_results << ( selected_year.count() )
@@ -271,6 +278,8 @@ class StatisticsController < ApplicationController
 
     iterator = 0
 
+    logger.info("find state by abbreviation #{state}")
+
     # [String] receives state by its abbreviation.
     state = State.find_by_abbreviation( params[:state_] )
 
@@ -288,7 +297,7 @@ class StatisticsController < ApplicationController
       if( params[:state_] && params[:state_] != "All" )
         sanctions_by_type = sanctions_by_type.where( state_id: state[:id] )
       else
-        # Nothing to do.
+        logger.debug("no sanctions_by_type #{sanctions_by_type}")
       end
 
       # Concatenate sanction type in the result list, to have all sanctions by type.
