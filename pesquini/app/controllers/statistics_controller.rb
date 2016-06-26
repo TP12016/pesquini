@@ -8,6 +8,8 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class StatisticsController < ApplicationController
 
+  require  'logger'
+
   # [String] Keeps list of all states.
   @@states_list = State.all_states
 
@@ -157,12 +159,13 @@ class StatisticsController < ApplicationController
 
     @chart = sanction_by_type_graph_information()
 
-    # If if not state clene a state list to use.
+    # If is not state clone a state list to use.
     if ( !@states )
+      logger.debug("cloning a list.")
       @states = @@states_list.clone
       @states.unshift( "All" )
     else
-      # Nothing to do.
+      logger.info("it is a #{@states}")
     end
 
     respond_to do |format|
@@ -181,6 +184,9 @@ class StatisticsController < ApplicationController
 
     title = "Sanction graph by type"
     LazyHighCharts::HighChart.new( "pie" ) do |format|
+
+      logger.info("build information for chart.")
+
       Preconditions.check_not_nil( format )
 
       # Defines values to draw sanction by type chart.
@@ -217,9 +223,12 @@ class StatisticsController < ApplicationController
     # Takes states that has sanction in state list to show by year.
     @@states_list.each() do |sanction_state|
 
+      logger.info("finding sanction by state in @@states_list.")
 
       # [String] keeps state found by its abbreviation.
       state = State.find_by_abbreviation( "#{sanction_state}" )
+
+      logger.info("find sanction by state id.")
 
       # [String] keeps sanctions in a state, by state id.
       sanctions_by_state = Sanction.where( state_id: state[:id] )
@@ -227,13 +236,15 @@ class StatisticsController < ApplicationController
       # [Integer] array with year that has sanctions.
       selected_year = []
 
+      logger.debug("declare array with years that has sanctions.")
+
       # Verify if year has sanction by state.
       if( params[:year_].to_i() != 0 )
         sanctions_by_state.each do |sanction_state|
           if( sanction_state.initial_date.year() ==  params[:year_].to_i() )
             selected_year << sanction_state
           else
-            # Nothing to do.
+            logger.debug("year without sanction.")
           end
       end
         sanction_by_state_results << ( selected_year.count() )

@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
     else
       logger.error("authentication failed.")
       flash[:error] = "Invalid login or password!"
-      logger.debug("will try loging again.")
+      logger.debug("will try login again.")
       render :new
     end
 
@@ -51,9 +51,9 @@ class SessionsController < ApplicationController
   # @return loggout status.
   def destroy()
 
-    assert user.empty?, "User must not be empty to loggout!"
+    assert user.empty?, "User must not be empty to logout!"
     if signed_in?()
-      logger.info("logging user out.")
+      logger.info("logout user.")
       sign_out
       redirect_to root_path
     else
