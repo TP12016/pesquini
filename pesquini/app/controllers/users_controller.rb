@@ -8,6 +8,8 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class UsersController < ApplicationController
 
+  require 'logger'
+  
   # 
   # Method that create a new user.
   # 
@@ -18,6 +20,8 @@ class UsersController < ApplicationController
 
   	# [String] Keeps new user created.
     @user = User.new()
+
+    logger.debug("create new user #{@user}")
 
     return @user
 
