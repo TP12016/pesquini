@@ -8,6 +8,8 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class User < ActiveRecord::Base
 
+  require 'logger'
+
   has_secure_password
 
   # responsible for receiving the validation information.
@@ -23,6 +25,8 @@ class User < ActiveRecord::Base
 
   	return SecureRandom.urlsafe_base64
 
+    logger.debug("token generated #{SecureRandom}")
+
   end
   	
   # 
@@ -33,6 +37,8 @@ class User < ActiveRecord::Base
   def User.digest( token )
 
     return Digest::SHA1.hexdigest( token.to_s )
+
+    logger.debug("token created: #{token}")
   
   end
 
