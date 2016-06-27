@@ -8,6 +8,8 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class Enterprise < ActiveRecord::Base
 
+  require 'logger'
+
   has_many :sanctions
   has_many :payments
   validates_uniqueness_of :cnpj
@@ -23,6 +25,8 @@ class Enterprise < ActiveRecord::Base
   # @return [String] last searched sanction.
   def last_sanction()
 
+    logger.info("informing last sanction.")
+
     # Receives last sanction.
     sanction = self.sanctions.last
 
@@ -35,7 +39,7 @@ class Enterprise < ActiveRecord::Base
         if searched_sanction.initial_date > sanction.initial_date
           sanction = searched_sanction
         else
-          # Nothing to do.
+          logger.warn("didnt found sanction.")
         end
       end
     end
@@ -56,13 +60,15 @@ class Enterprise < ActiveRecord::Base
     unless payment.nil?()
       self.payments.each do |searched_payment|
 
+        logger.info("payment #{payment} can't be nil.")
+
         # This block will compare the researched payment amount on date,
         # And making the last payment, a new variable.
         Preconditions.check_not_nil( searched_payment )
         if searched_payment.sign_date > payment.sign_date
           payment = searched_payment
         else
-          # Nothing to do.
+          logger.warn("didnt found payment.")
         end
       end
     end
@@ -83,8 +89,10 @@ class Enterprise < ActiveRecord::Base
     # [String] Receives last payment received by an enterprise.
     payment = last_payment
 
-    # This block will compare if a enterprise received a payment after initial date of sanction,
-    # return payment value.
+    logger.info("comparing enterprise payment day.")
+
+    # This block will compare if a enterprise received a payment 
+    # after initial date of sanction, return payment value.
     if sanction && payment
       payment.sign_date < sanction.initial_date
     else
@@ -105,6 +113,8 @@ class Enterprise < ActiveRecord::Base
 
     # [String] keep enterprise searched.
     searched_enterprise = Enterprise.find_by_cnpj( self.cnpj )
+
+    logger.debug("search enterprise by cnpj #{searched_enterprise}")
 
     return searched_enterprise
 
@@ -133,11 +143,11 @@ class Enterprise < ActiveRecord::Base
       Preconditions.check( index ) {has_type( Integer ) and
                                                 satisfies( ">= 0" ) { index >= 0 }}
 
-      # Verify if enterprise sanctions is equal the number of sanctions.
+      # Count enterprises sanctions.
       if quantity_of_sanctions[0] == enterprise.sanctions_count
         return index + 1
       else
-        # Nothing to do.
+        logger.info("enterprise without sanction.")
       end
     end
 
@@ -153,6 +163,8 @@ class Enterprise < ActiveRecord::Base
     enterprise_group_count = []
     @enterprise_group_array = []
 
+    logger.info("sorting sanctions by ranking.")
+
     # [String] sort sanctions counted.
     sorted_sanctions = Enterprise.all.sort_by{
               |quantity_of_sanctions_ranking| quantity_of_sanctions_ranking.sanctions_count }
@@ -160,15 +172,19 @@ class Enterprise < ActiveRecord::Base
     Preconditions.check_not_nil( sorted_sanctions )
 
     # [String] reverse sort.
-    sorted_group_sanctions = sorted_sanctions.uniq.group_by( &:sanctions_count )
+    uniqueness = sorted_sanctions.uniq
+    sorted_group_sanctions = uniqueness.group_by( &:sanctions_count )
     sorted_group_sanctions_reverse = sorted_group_sanctions.to_a.reverse
 
     Preconditions.check_not_nil( sorted_group_sanctions )
 
     # Sort sanctions in groups.
-    sorted_group_sanctions.each do |qauntity_group_sanctions|
-      enterprise_group << qnt_group_sanctions[0]
-      enterprise_group_count << qnt_group_sanctions[1].count
+    sorted_group_sanctions.each do |quantity_group_sanctions|
+
+      logger.info("sorting sanctions in groups.")
+      
+      enterprise_group << quantity_group_sanctions[0]
+      enterprise_group_count << quantity_group_sanctions[1].count
     end
 
     @enterprise_group_array << enterprise_group
