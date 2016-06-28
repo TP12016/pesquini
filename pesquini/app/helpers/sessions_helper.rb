@@ -27,13 +27,11 @@ module SessionsHelper
     user.update_attribute( :remember_token, User.digest( remember_token ) )
     self.current_user = user
 
-    logger.debug("current user in application #{current_user}")
+    logger.debug("current user in application")
 
     return current_user
 
     end
-
-	end
 
   #
   # @deprecated  Method to return current user.
@@ -70,7 +68,7 @@ module SessionsHelper
     begin
       !current_user.nil?
     rescue
-      logger.fatal("logged user is nil #{current_user}")
+      logger.fatal("logged user is nil")
     end
 
     return current_user
@@ -84,10 +82,10 @@ module SessionsHelper
   # @return [String] alert message in case user is no authorized.
   def authorize()
 
-    unless signed_in?
-      redirect_to "/signin'" alert: "Not authorized!"
-      logger.error("user is not authorized #{alert:}")
-    end
+    redirect_to '/signin', alert: "Nao autorizado !" unless signed_in?
+
+    logger.error("user is not authorized")
+    
   end
 
   #
@@ -104,11 +102,9 @@ module SessionsHelper
     cookies.delete( :remember_token )
     self.current_user = nil
 
-    logger.debug("user sign out have to be nil #{current_user}")
+    logger.debug("user sign out have to be nil")
 
     return current_user
-
   end
-
 end
 

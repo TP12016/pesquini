@@ -32,7 +32,7 @@ class Sanction < ActiveRecord::Base
              2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013,
              2014, 2015]
 
-    logger.debug("years with sanctions #{years}")
+    logger.debug("years with sanctions")
 
     return years
 
@@ -49,7 +49,7 @@ class Sanction < ActiveRecord::Base
     # keeps the sanction finded by process.
     found_sanction = Sanction.find_by_process_number( self.process_number )
 
-    logger.debug("sanction: #{found_sanction} and process number #{process_number}")
+    logger.debug("sanction: #{found_sanction} and process number")
 
     return found_sanction
   end

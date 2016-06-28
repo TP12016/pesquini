@@ -205,13 +205,16 @@ class StatisticsController < ApplicationController
       format.legend_style( :style => {:left => "auto", :bottom => 'auto',
                            :right => "50px",:top => "100px"})
       format.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
->>>>>>> 21da9628acc970120547806ad7dd491888c50bf082
-                      :dataLabels => {:enabled => true, :color => "black",
-                      :style => {:font => "12px Trebuchet MS, Verdana, sans-serif"}}
-      } )
-    end
 
-  end
+                      :dataLabels => {:enabled => true, :color => "black",
+                      :style => {:font => "12px Trebuchet MS, Verdana, sans-serif"}
+                    } 
+                  })
+
+    end
+  end    
+
+
 
   #
   # List of total of sanctions in a especific state in a especific year.
