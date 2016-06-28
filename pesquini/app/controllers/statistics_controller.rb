@@ -281,7 +281,7 @@ class StatisticsController < ApplicationController
 
     iterator = 0
 
-    logger.info("find state by abbreviation #{state}")
+    logger.info("find state by abbreviation")
 
     # [String] receives state by its abbreviation.
     state = State.find_by_abbreviation( params[:state_] )
@@ -312,9 +312,10 @@ class StatisticsController < ApplicationController
     end
 
 
-    results2 << "Uninformed"
-      Preconditions.check_not_nil( total )
+    total_sanction_by_type_result << "Uninformed"
+      
       if ( params[:state_] && params[:state_] != "All" )
+        Preconditions.check_not_nil( total )
         total = Sanction.where(state_id: state[:id] ).count
       else
         total = Sanction.count
