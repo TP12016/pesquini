@@ -214,15 +214,11 @@ class StatisticsController < ApplicationController
     end
   end    
 
-
-
   #
   # List of total of sanctions in a especific state in a especific year.
   #
   # @return list of sacntions in a state on a year.
   def total_by_state()
-
-    assert state_results.empty?, "The list must not be empty!"
 
     # [String] array of string that keep the results of sanctions by state.
     sanction_by_state_results = []

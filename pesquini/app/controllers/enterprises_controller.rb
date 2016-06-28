@@ -60,13 +60,14 @@ class EnterprisesController < ApplicationController
   def show_page_number() 
 
     logger.info("count number of results per page.")
-    logger.debug("load number of results per page, should be max 10.")
 
     if params[:page].to_i > 0
       @page_number = params[:page].to_i  - 1
     else
       @page_number = 0
     end
+
+    logger.debug("load number of results per page, should be max 10.")
 
     return @page_number
 
@@ -95,7 +96,7 @@ class EnterprisesController < ApplicationController
         raise "total_sum should not be nil" 
       end
 
-      payments_sum(total_sum, enterprise)      
+      payments_sum(total_sum, enterprise, index)      
     end
 
     return payment_position
@@ -108,15 +109,15 @@ class EnterprisesController < ApplicationController
   # @param enterprise [String] keeps the enterprise.  
   # 
   # @return [Integer] enterprise position according to the payment received.
-  def payments_sum( total_sum, enterprise )
+  def payments_sum( total_sum, enterprise, index )
 
     assert total_sum != nil
-
-    Preconditions.check( index ) { index >= 0 }
     
     # Verify if enterprise payment sum is equal total sum in each position.
     if total_sum.payments_sum == enterprise.payments_sum
+
       logger.debug("comparing payments.")
+
       return index + 1
     else
       # Nothing to do.

@@ -130,11 +130,10 @@ class Enterprise < ActiveRecord::Base
     Preconditions.check_not_nil( enterprise )
 
     # [String] keep features sanctions ordered.
-    orderedSanc = self.featured_sanctions
+    orderedSanctions = self.featured_sanctions
 
     # [String] order sanctions in group.
-    groupedSanctions_uniqueness = orderedSanctions.uniqueness()
-    groupedSanctions = groupedSanctions_uniqueness.group_by( &:sanctions_count ).to_a
+    groupedSanctions = orderedSanctions.uniq.group_by(&:sanctions_count).to_a
 
     # Organize sanctions by group.
     groupedSanctions.each_with_index do |quantity_sanctions, index|
@@ -144,10 +143,10 @@ class Enterprise < ActiveRecord::Base
                                                 satisfies( ">= 0" ) { index >= 0 }}
 
       # Count enterprises sanctions.
-      if quantity_of_sanctions[0] == enterprise.sanctions_count
+      if quantity_sanctions[0] == enterprise.sanctions_count
         return index + 1
       else
-        logger.info("enterprise without sanction.")
+        logger.debug("enterprise without sanction #{enterprise}")
       end
     end
 
