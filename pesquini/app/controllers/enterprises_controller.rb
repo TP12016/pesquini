@@ -16,6 +16,9 @@ class EnterprisesController < ApplicationController
   # @return [String] enterprises.
   def index()
 
+
+    logger.info("result of enterprise search. Method index() in enterprises_controller.rb.")
+
     if params[:q].nil?()
 
       @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
@@ -86,8 +89,8 @@ class EnterprisesController < ApplicationController
   def enterprise_payment_position( enterprise )
 
     assert enterprise != nil
-    
-    logger.info("defines enterprise position by payment.")
+
+    logger.info("defines enterprise position by payment. Method enterprise_payment_position() in enterprises_controller.rb")
 
     # [String] receives enterprises payments.
     payment_position = Enterprise.featured_payments
@@ -116,6 +119,9 @@ class EnterprisesController < ApplicationController
   # 
   # @return [Integer] enterprise position according to the payment received.
   def payments_sum( total_sum, enterprise, index )
+
+
+    logger.info("defines total sum of payments. Method payments_sum() in enterprises_controller.rb")
 
     assert total_sum != nil
     

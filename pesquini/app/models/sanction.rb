@@ -27,6 +27,7 @@ class Sanction < ActiveRecord::Base
   # @return [String] years.
   def self.all_years()
 
+    logger.info("define years with sanctions. Method self.all_years(). File sanction.rb")
     
     years = ["All", 1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
              2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013,
@@ -46,6 +47,8 @@ class Sanction < ActiveRecord::Base
   # @return [String] result of search.
   def refresh!()
 
+    logger.info("refresh sanctions. Method refresh!(). File sanction.rb")
+
     Preconditions.check_not_nil( process_number )
 
     # keeps the sanction finded by process.
@@ -62,6 +65,8 @@ class Sanction < ActiveRecord::Base
   #
   # @return [Double] percentage.
   def self.percentual_sanction( value )
+
+    logger.info("calculate sanction percentage. Method percentual_sanction(). File sanction.rb")
 
     # [Interger] receives the full amount.
     total = Sanction.all.count

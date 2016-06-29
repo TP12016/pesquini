@@ -54,6 +54,9 @@ class Enterprise < ActiveRecord::Base
   # @return [String] last payment received.
   def last_payment()
 
+
+    logger.info("informing last payment. Method last_payment(). File enterprise.rb")
+
     # [String] Receives last payment received by an enterprise.
     payment = self.payments.last()
 
@@ -83,6 +86,9 @@ class Enterprise < ActiveRecord::Base
   # @return
   def payment_after_sanction?()
 
+
+    logger.info("informing payment after sanction occur. Method payment_after_sanction(). File enterprise.rb")
+
     # [String] Receives last sanction.
     sanction = last_sanction
 
@@ -109,6 +115,9 @@ class Enterprise < ActiveRecord::Base
   # @return [String] result of search.
   def refresh!()
 
+
+    logger.info("informing refresh enterprises searched by CNPJ. Method refresh!(). File enterprise.rb")
+
     Preconditions.check_not_nil( cnpj )
 
     # [String] keep enterprise searched.
@@ -126,6 +135,9 @@ class Enterprise < ActiveRecord::Base
   #
   # @return enterprise by its position.
   def self.enterprise_position( enterprise )
+
+
+    logger.info("organizes the companies position per sanction. Method self.enterprise_position(). File enterprise.rb")
 
     Preconditions.check_not_nil( enterprise )
 
