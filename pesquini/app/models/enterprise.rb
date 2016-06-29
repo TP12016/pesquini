@@ -25,7 +25,7 @@ class Enterprise < ActiveRecord::Base
   # @return [String] last searched sanction.
   def last_sanction()
 
-    logger.info("informing last sanction.")
+    logger.info("informing last sanction. Method last_sanction(). File enterprise.rb")
 
     # Receives last sanction.
     sanction = self.sanctions.last
@@ -39,7 +39,7 @@ class Enterprise < ActiveRecord::Base
         if searched_sanction.initial_date > sanction.initial_date
           sanction = searched_sanction
         else
-          logger.warn("didnt found sanction.")
+          logger.debug("doesnt have sanction.")
         end
       end
     end
@@ -60,7 +60,7 @@ class Enterprise < ActiveRecord::Base
     unless payment.nil?()
       self.payments.each do |searched_payment|
 
-        logger.info("payment #{payment} can't be nil.")
+        logger.info("payment can't be nil.")
 
         # This block will compare the researched payment amount on date,
         # And making the last payment, a new variable.
@@ -68,7 +68,7 @@ class Enterprise < ActiveRecord::Base
         if searched_payment.sign_date > payment.sign_date
           payment = searched_payment
         else
-          logger.warn("didnt found payment.")
+          logger.debug("enterprise doesnt has payment #{payment}.")
         end
       end
     end
@@ -157,6 +157,8 @@ class Enterprise < ActiveRecord::Base
   #
   # @return [String] a list with the enterprises with more sanctions.
   def self.most_sanctioned_ranking()
+
+    logger.info("method self.most_sanctioned_ranking() in enterprise.rb")
 
     enterprise_group = []
     enterprise_group_count = []

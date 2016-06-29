@@ -9,10 +9,12 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 <div class =" lowercase-letter">
 
   <% @payments.each_with_index do |payment, index| %>
+    <% unless @page_number.nil? %>
+      <% unless @per_page.nil? %>
+        <h4><b><div class= "index_number"><%= @page_num * @per_page + index + 1 %></div></b></h4>
+      <% end %>
+    <% end %>
 
-    <h4><b><div class= "index_number">
-      <%= @page_num*@per_page + index +1%>
-    </div></b></h4>
     <h4> <b>Identificador: </b> <%= payment.identifier %> </h4>
     <h4> <b>Número do processo: </b> <%= payment.process_number %> </h4>
     <h4> <b>Valor inicial: </b> <%= number_to_currency(payment.initial_value, unit: "R$ ", separator: ",", delimiter: ".")%> </h4>

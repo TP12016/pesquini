@@ -6,6 +6,8 @@ Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
 
+PAGE_NUMBER = 10
+
 class EnterprisesController < ApplicationController
 
   # 
@@ -34,13 +36,15 @@ class EnterprisesController < ApplicationController
   # @return [String] enterprise attributes.
   def show()
 
-    logger.info("loading enterprises features to show in page.")
+    logger.info("loading enterprises features to show in page. Method show() in enterprises_controller.rb.")
 
     # [Integer] keeps number of enterprises search result per page.
-    @per_page = 10
+    PAGE_NUMBER
+
+    Preconditions.check_not_nil( PAGE_NUMBER )
 
     # Build enterprises values to show per page.
-    @page_number = show_page_number()
+    @page_number = show_page_number() 
     @enterprise = Enterprise.find( params[:id] )
     @collection = Sanction.where( enterprise_id: @enterprise.id )
     @payments = Payment.where( enterprise_id: @enterprise.id )
@@ -62,6 +66,7 @@ class EnterprisesController < ApplicationController
     logger.info("count number of results per page.")
 
     if params[:page].to_i > 0
+      Preconditions.check( :page ) {is_not_nil and has_type(Integer) and satisfies(" > 0") { :page > 0 }}
       @page_number = params[:page].to_i  - 1
     else
       @page_number = 0
@@ -81,6 +86,7 @@ class EnterprisesController < ApplicationController
   def enterprise_payment_position( enterprise )
 
     assert enterprise != nil
+    
     logger.info("defines enterprise position by payment.")
 
     # [String] receives enterprises payments.
@@ -92,8 +98,8 @@ class EnterprisesController < ApplicationController
 
       # Raise an exception in case total sum is nil.
       if total_sum.nil?
-        logger.error("total_sum is nil and should not be.")
-        raise "total_sum should not be nil" 
+        raise "total_sum should not be nil"
+         logger.error("total_sum is nil and should not be.") 
       end
 
       payments_sum(total_sum, enterprise, index)      

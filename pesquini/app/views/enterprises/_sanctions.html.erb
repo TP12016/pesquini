@@ -8,10 +8,13 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 <div class =" lowercase-letter">
   <% @sanctions.each_with_index do |sanction, index| %>
-    
-    <h4><b><div class= "index_number">
-      <%= @page_number*@per_page + index +1%>
-    </div></b></h4>
+    <% unless @page_number.nil? %>
+      <% unless @per_page.nil? %>
+        <h4><b><div class= "index_number">
+          <%= @page_number * @per_page + index + 1%>
+        </div></b></h4>
+      <% end %>
+    <% end %>
     
     <h4> <b>Órgao Sancionador: </b> <%= sanction.sanction_organ.downcase! %> </h4>
     <h4> <b> Número do processo: </b> <%= sanction.process_number %> </h4>
