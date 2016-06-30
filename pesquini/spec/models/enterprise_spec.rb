@@ -60,10 +60,10 @@ describe Enterprise do
     describe "#payment_after_sanction" do
     
       it "should return false if have any sanction or any payment" do
-        e = Enterprise.new
-        expect( e.sanctions.count ).to be( 0 ) 
-        expect( e.payments.count ).to be( 0 )
-        expect( e.payment_after_sanction?() ).to be false
+        enterprise = Enterprise.new
+        expect( enterprise.sanctions.count ).to be( 0 ) 
+        expect( enterprise.payments.count ).to be( 0 )
+        expect( enterprise.payment_after_sanction?() ).to be false
       end
     
       it "should return false if don't have payment after sanction" do
@@ -81,10 +81,10 @@ describe Enterprise do
     describe "#self.enterprise_position" do
       
       it "should return 1 if there is only 1 enterprise" do
-        e = Enterprise.new
-        e.sanctions_count = 10000
-        e.save
-        expect(Enterprise.enterprise_position( e ) ).to eq( 1 );
+        enterprise = Enterprise.new
+        enterprise.sanctions_count = 10000
+        enterprise.save
+        expect(Enterprise.enterprise_position( enterprise ) ).to eq( 1 );
       end
    
     end
@@ -93,18 +93,18 @@ describe Enterprise do
       
       before do
       
-        @e = Enterprise.new
-        @e.cnpj = "12575431567543"
-        @e.save
+        @enterprise = Enterprise.new
+        @enterprise.cnpj = "12575431567543"
+        @enterprise.save
       
       end
 
       it "should return enterprise" do
-        expect( @e.refresh! ).to eq( @e );
+        expect( @enterprise.refresh! ).to eq( @enterprise );
       end
 
       it "should not return other enterprise" do
-        expect( @e.refresh! ).not_to eq( @enterprise );
+        expect( @enterprise.refresh! ).not_to eq( @enterprise );
       end  
    
     end
