@@ -15,18 +15,18 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
       <% end %>
     <% end %>
 
-    <h4> <b>Identificador: </b> <%= payment.identifier %> </h4>
-    <h4> <b>Número do processo: </b> <%= payment.process_number %> </h4>
-    <h4> <b>Valor inicial: </b> <%= number_to_currency(payment.initial_value, unit: "R$ ", separator: ",", delimiter: ".")%> </h4>
-    <h4> <b>Data de assinatura: </b> <%= payment.sign_date.strftime("%d/%m/%Y") %> </h4>
-    <h4> <b>Inicio do pagamento: </b> <%= payment.start_date.strftime("%d/%m/%Y") %> </h4>
-    <h4> <b>Fim do pagamento: </b> <%= payment.end_date.strftime("%d/%m/%Y") %> </h4>
+    <h4> <b><%= t('Identificador')%>: </b> <%= payment.identifier %> </h4>
+    <h4> <b><%= t('Número do processo')%>: </b> <%= payment.process_number %> </h4>
+    <h4> <b><%= t('Valor inicial')%>: </b> <%= number_to_currency(payment.initial_value, unit: "R$ ", separator: ",", delimiter: ".")%> </h4>
+    <h4> <b><%= t('Data de assinatura')%>: </b> <%= payment.sign_date.strftime("%d/%m/%Y") %> </h4>
+    <h4> <b><%= t('Inicio do pagamento')%>: </b> <%= payment.start_date.strftime("%d/%m/%Y") %> </h4>
+    <h4> <b><%= t('Fim do pagamento')%>: </b> <%= payment.end_date.strftime("%d/%m/%Y") %> </h4>
     <hr align="left">
 
   <% end %>
 
   <% if @payments_per_page.empty? %>
-    <h3> Dados sobre pagamentos não informados </h3>
+    <h3><%= t('Dados sobre pagamentos não informados') %> </h3>
   <% end %>
   
   <%= will_paginate @payments_per_page,  renderer: BootstrapPagination::Rails %>

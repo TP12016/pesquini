@@ -283,3 +283,12 @@ en:
   nós: "us"
   Somos alunos da Universidade de Brasilia (UnB - FGA): "We are students at the University of Brasilia (UnB - FGA)"
   Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software: "We developed this software as a discipline of design software Development Methods"
+
+  #_payments.html.erb
+  Identificador: "Identifier"
+  Número do processo: "Process number"
+  Valor inicial: "Initial value"
+  Data de assinatura: "Sign date"
+  Inicio do pagamento: "Start payment"
+  Fim do pagamento: "End payment"
+  Dados sobre pagamentos não informados: "Payment data not informed"
