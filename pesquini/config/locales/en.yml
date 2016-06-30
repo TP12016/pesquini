@@ -229,3 +229,14 @@ en:
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
     pm: pm
+
+  #_header.html.erb
+  Pesquisas: "Search"
+  Estatisticas: "Statistics"
+  Sobre: "About"
+  Saiba Mais: "More"
+  Logout: "Logout"
+
+  #footer.html.erb
+  Sobre nós: "About us"
+  Equipe de alunos UnB, disciplina MDS/GPP: "Team UnB students, MDS / GPP discipline"

@@ -27,12 +27,12 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <!--<li><a href="#tf-services" class="page-scroll">Rankings</a></li>-->
-        <li><%= link_to "Pesquisas", root_path(:anchor => "tf-search") %></li>
-        <li><%= link_to "Estatisticas", root_path(:anchor => "tf-services") %></li>
-        <li><%= link_to "Sobre", root_path(:anchor => "tf-clients")%></li>
-        <li><%= link_to "Saiba Mais", root_path(:anchor => "tf-about")%></li>
+        <li><%= link_to t('Pesquisas'), root_path(:anchor => "tf-search") %></li>
+        <li><%= link_to t('Estatisticas'), root_path(:anchor => "tf-services") %></li>
+        <li><%= link_to t('Sobre'), root_path(:anchor => "tf-clients")%></li>
+        <li><%= link_to t('Saiba Mais'), root_path(:anchor => "tf-about")%></li>
         <% if signed_in? %>
-          <li><%= link_to "Logout", signout_path, method: "delete" %></li>
+          <li><%= link_to t('Logout'), signout_path, method: "delete" %></li>
         <% end %>
         <!--<li>< %= link_to "Enterprises", enterprises_path %></li>-->
       </ul>
