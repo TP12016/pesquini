@@ -6,6 +6,8 @@ Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
 
+INITIAL_ITERATOR = 0
+
 class StatisticsController < ApplicationController
 
   require 'logger'
@@ -144,7 +146,7 @@ class StatisticsController < ApplicationController
       Preconditions.check_not_nil( parameters )
 
       parameters.title( :text => title )
-      if( params[:year_].to_i() != 0 )
+      if( params[:year_].to_i() != INITIAL_ITERATOR )
         parameters.title(:text => params[:year_].to_i() )
       else
         logger.debug("params #{:year}")
@@ -256,7 +258,7 @@ class StatisticsController < ApplicationController
       logger.debug("declare array with years that has sanctions.")
 
       # Verify if year has sanction by state.
-      if( params[:year_].to_i() != 0 )
+      if( params[:year_].to_i() != INITIAL_ITERATOR )
         sanctions_by_state.each do |sanction_state|
           if( sanction_state.initial_date.year() ==  params[:year_].to_i() )
             selected_year << sanction_state
@@ -287,7 +289,7 @@ class StatisticsController < ApplicationController
     # List with santions by type.
     total_sanction_by_type_result = []
 
-    iterator = 0
+    iterator = INITIAL_ITERATOR
 
     logger.info("find state by abbreviation")
 
