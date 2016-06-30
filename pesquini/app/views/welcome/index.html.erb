@@ -83,7 +83,7 @@
   <div class="overlay">
     <div class="container">
       <div class="section-title center">
-        <h2>Formas de <strong>pesquisa</strong></h2>
+        <h2><%= t('Formas de') %> <strong><%= t('pesquisa') %></strong></h2>
         <div class="line">
           <hr>
         </div>
@@ -96,9 +96,9 @@
             <div class="thumbnail">
               <%= image_tag 'search/lupa.png', class: "img-circle search-img" %>
               <div class="caption">
-                <h3>Pesquisa por nome ou CNPJ</h3>
+                <h3><%= t('Pesquisa por nome ou CNPJ') %></h3>
                 <hr>
-                <p>Realizar a pesquisa através da razão social da empresa.</p>
+                <p><%= t('Realizar a pesquisa através da razão social da empresa') %>.</p>
               </div>
             </div>
           </div>
@@ -109,69 +109,13 @@
           <div class="thumbnail">
             <%= image_tag 'search/lupa.png', class: "img-circle search-img" %>
             <div class="caption">
-              <h3>Mostrar todas as empresas</h3>
+              <h3><%= t('Mostrar todas as empresas') %></h3>
               <hr>
-              <p>Mostrar todas as empresas cadastradas.</p>
+              <p><%= t('Mostrar todas as empresas cadastradas') %>.</p>
             </div>
           </div>
         </div>
         <%  end %>
- <!--
-        <div class="item">
-          <div class="thumbnail">
-            < %= image_tag 'search/lupa.png', class: "img-circle search-img" %>
-            <div class="caption">
-              <h3>Pesquisa pela razão social</h3>
-              <hr>
-              <p>Realizar a pesquisa através da razão social da empresa.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="thumbnail">
-            < %= image_tag 'search/lupa.png', class: "img-circle search-img" %>
-            <div class="caption">
-              <h3>Pesquisa pelo nome fantasia da empresa</h3>
-              <hr>
-              <p>Realizar a pesquisa através do nome fantasia da empresa.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="thumbnail">
-            < %= image_tag 'search/lupa.png', class: "img-circle search-img" %>
-            <div class="caption">
-              <h3>Pesquisa por CNPJ</h3>
-              <hr>
-              <p>Realizar a pesquisa através do CNPJ da empresa.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="thumbnail">
-            < %= image_tag 'search/lupa.png', class: "img-circle search-img" %>
-            <div class="caption">
-              <h3>Pesquisa por localização</h3>
-              <hr>
-              <p>Realizar a pesquisa através da localização da empresa.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="thumbnail">
-            < %= image_tag 'search/lupa.png', class: "img-circle search-img" %>
-            <div class="caption">
-              <h3>Pesquisa customizada</h3>
-              <hr>
-              <p>Utilizar nossa ferramenta da busca customizada.</p>
-            </div>
-          </div>
-        </div>
--->
       </div>
 
     </div>
@@ -184,12 +128,12 @@
 <div id="tf-services" class="text-center">
   <div class="container">
     <div class="section-title center">
-      <h2><strong>Estatísticas</strong> sobre empresas</h2>
+      <h2><strong><%= t('Estatísticas') %></strong> <%= t('sobre empresas')%></h2>
       <div class="line">
         <hr>
       </div>
       <div class="clearfix"></div>
-      <em>Visualização de gráficos e rankings sobre empresas inidôneas. Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral.</em>
+      <em><%= t('Visualização de gráficos e rankings sobre empresas inidôneas, por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral')%>.</em>
     </div>
     <div class="space"></div>
     <div class="row">
@@ -197,56 +141,34 @@
       <div class="col-md-3 col-sm-6 service">
         <%= link_to(statistics_path(:anchor => "tf-sanction_by_state"))do %>
         <i class="fa fa-bar-chart"></i>
-        <h4><strong>Estados com mais sanções</strong></h4>
-        <p>Gráfico que indica  a quantidade de sanções por Unidade Federativa.</p>
+        <h4><strong><%= t('Estados com mais sanções')%></strong></h4>
+        <p><%= t('Gráfico que indica  a quantidade de sanções por Unidade Federativa')%>.</p>
         <% end %>
       </div>
 
       <div class="col-md-3 col-sm-6 service">
         <%= link_to(statistics_path(:anchor => "tf-most_sanctioned_ranking"))do %>
         <i class="fa fa-line-chart"></i>
-        <h4><strong>Empresas com mais sanções</strong></h4>
-        <p>Ranking que indica  a quantidade de empresas com mais sançoes.</p>
+        <h4><strong><%= t('Empresas com mais sanções')%></strong></h4>
+        <p><%= t('Ranking que indica  a quantidade de empresas com mais sançoes')%>.</p>
         <% end %>
       </div>
 
        <div class="col-md-3 col-sm-6 service">
         <%= link_to(statistics_path(:anchor => "tf-sanction_by_type"))do %>
         <i class="fa fa-pie-chart"></i>
-        <h4><strong>Tipos de sanções</strong></h4>
-        <p>Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades.</p>
+        <h4><strong><%= t('Tipos de sanções') %></strong></h4>
+        <p><%= t('Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades')%>.</p>
         <% end %>
       </div>
 
        <div class="col-md-3 col-sm-6 service">
         <%= link_to(statistics_path(:anchor => "tf-payment_rankings"))do %>
         <i class="fa fa-usd"></i>
-        <h4><strong>Empresas com maior numero de pagamentos</strong></h4>
-        <p>Ranking que indica as empresas que mais receberam pagamentos do governo.</p>
+        <h4><strong><%= t('Empresas com maior numero de pagamentos')%></strong></h4>
+        <p><%= t('Ranking que indica as empresas que mais receberam pagamentos do governo')%>.</p>
         <% end %>
       </div>
-      <!--
-      <div class="col-md-3 col-sm-6 service">
-        < %= link_to(enterprises_path, method: :get) do %>
-        <i class="fa fa-usd"></i>
-        <h4><strong>Gastos</strong></h4>
-        <p>Ranking das empresas que geraram maiores prejuísos ao Estado.</p>
-        < % end %>
-      </div>
-      -->
-<!--
-      <div class="col-md-3 col-sm-6 service">
-        <i class="fa fa-clock-o"></i>
-        <h4><strong>Período</strong></h4>
-        <p>Períodos de tempo em que houve a identificação da maior quantidade empresas inidôeneas.</p>
-      </div>
-
-      <div class="col-md-3 col-sm-6 service">
-        <i class="fa fa-bullhorn"></i>
-        <h4><strong>outro</strong></h4>
-        <p>outro outro outro outro outro outro outro outro.</p>
-        </div>
--->
       </div>
     </div>
   </div>
@@ -258,18 +180,18 @@
 
       <div class="about_pesquini">
         <div class="section-title center">
-          <h2>Sobre o <strong>pesquini</strong></h2>
+          <h2><%= t('Sobre o')%> <strong>pesquini</strong></h2>
         </div>
         <hr>
-        <h3>O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais , como gráficos, tabelas e rankings para a população em geral.</h3>
+        <h3><%= t('O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais , como gráficos, tabelas e rankings para a população em geral')%>.</h3>
       </div>
 
       <div class="about_us">
         <div class="section-title center">
-          <h2>Sobre <strong>nós</strong></h2>
+          <h2><%= t('Sobre')%> <strong><%= t('nós')%></strong></h2>
         </div>
         <hr>
-        <h3>Somos alunos da Universidade de Brasilia (UnB - FGA). Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software</h3>
+        <h3><%= t('Somos alunos da Universidade de Brasilia (UnB - FGA)')%>. <%= t('Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software')%></h3>
       </div>
 
     </div>
