@@ -292,3 +292,16 @@ en:
   Inicio do pagamento: "Start payment"
   Fim do pagamento: "End payment"
   Dados sobre pagamentos não informados: "Payment data not informed"
+
+  #_sanctions.html.erb
+  Órgao Sancionador: "Sanctioning Organ"
+  Número do processo: "Process number"
+  Data de Inicio da Sanção: "Sanction start date"
+  Data Final da Sanção: "Sanction end date"
+  UF: "State"
+  Tipo Sanção: "Sanction type"
+  Contrato pós Sanção: "Post contract sanction"
+  Dados sobre sanções não informados: "Data not informed sanctions"
+  Dado nao informado: "Data not informed"
+
+  

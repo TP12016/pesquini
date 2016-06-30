@@ -16,22 +16,22 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
       <% end %>
     <% end %>
     
-    <h4> <b>Órgao Sancionador: </b> <%= sanction.sanction_organ.downcase! %> </h4>
-    <h4> <b> Número do processo: </b> <%= sanction.process_number %> </h4>
-    <h4> <b>Data de Inicio da Sanção: </b> <%= sanction.initial_date.nil? ? "Dado nao informado" :sanction.initial_date.strftime("%d/%m/%Y") %> </h4>
-    <h4> <b> Data Final da Sanção: </b> <%= sanction.final_date.nil? ? "Dado nao informado"  :sanction.final_date.strftime("%d/%m/%Y") %> </h4>
-    <h4> <b> UF: </b> <%= sanction.state.nil? ? "Dado nao informado" : sanction.state.abbreviation %> </h4>
-    <h4> <b> Tipo Sanção: </b> <%= sanction.sanction_type.nil? ? "Dado não informado" : sanction.sanction_type.description.downcase! %> </h4>
+    <h4> <b><%= t('Órgao Sancionador')%>: </b> <%= sanction.sanction_organ.downcase! %> </h4>
+    <h4> <b><%= t('Número do processo')%>: </b> <%= sanction.process_number %> </h4>
+    <h4> <b><%= t('Data de Inicio da Sanção')%>: </b> <%= sanction.initial_date.nil? ? t('Dado nao informado') :sanction.initial_date.strftime("%d/%m/%Y") %> </h4>
+    <h4> <b><%= t('Data Final da Sanção')%>: </b> <%= sanction.final_date.nil? ? t('Dado nao informado')  :sanction.final_date.strftime("%d/%m/%Y") %> </h4>
+    <h4> <b><%= t('UF')%>: </b> <%= sanction.state.nil? ? t('Dado nao informado') : sanction.state.abbreviation %> </h4>
+    <h4> <b><%= t('Tipo Sanção')%>: </b> <%= sanction.sanction_type.nil? ? t('Dado nao informado') : sanction.sanction_type.description.downcase! %> </h4>
     <% if @enterprise.payment_after_sanction? %>
-    <h4>Contrato pós Sanção? : <span class="glyphicon glyphicon-ok"> </h4>
+    <h4><%= t('Contrato pós Sanção')%>? : <span class="glyphicon glyphicon-ok"> </h4>
     <% else %>
-    <h4>Contrato pós Sanção? :   <span class="glyphicon glyphicon-remove"> </h4>
+    <h4><%= t('Contrato pós Sanção')%>? :   <span class="glyphicon glyphicon-remove"> </h4>
     <% end %>
     <hr align="left">
   <% end %>
 
   <% if @sanctions.empty? %>
-    <h3> Dados sobre sanções não informados </h3>
+    <h3><%= t('Dados sobre sanções não informados')%> </h3>
   <% end %>
   
   <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
