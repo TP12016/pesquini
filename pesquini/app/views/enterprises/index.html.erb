@@ -19,10 +19,10 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
           <h1><%= t('Ferramenta de busca')%></h1>
           <hr>
 
-          <%= search_form_for @search do |f| %>
-            <%= f.label :corporate_name_cont, t('Nome ou CNPJ') %>
-            <%= f.search_field :corporate_name_cont%>
-            <%= f.submit %>
+          <%= search_form_for @search do |find| %>
+            <%= find.label :corporate_name_cont, t('Nome ou CNPJ') %>
+            <%= find.search_field :corporate_name_cont%>
+            <%= find.submit %>
           <% end %>
 
         </div>
@@ -46,9 +46,9 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
         <hr>
       </div>
 
-      <% @enterprises.each do |p| %>
-        <span class="same_line">  <h3>Empresa:</h3><%= link_to p.corporate_name, p %>  </span>
-        <span class="same_line">  <h3>CNPJ:</h3> <%= p.cnpj %>  </span>
+      <% @enterprises.each do |enterprise_found| %>
+        <span class="same_line">  <h3>Empresa:</h3><%= link_to enterprise_found.corporate_name, enterprise_found %>  </span>
+        <span class="same_line">  <h3>CNPJ:</h3> <%= enterprise_found.cnpj %>  </span>
         <hr>
       <% end %>
       
