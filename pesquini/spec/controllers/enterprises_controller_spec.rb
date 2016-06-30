@@ -13,6 +13,10 @@ RSpec.describe EnterprisesController, :type => :controller do
   before do
   
     @enterprise = Enterprise.create( cnpj: "12345" )
+    @payment= Payment.create
+    @enterprise.payments << @payment
+    @sanction = Sanction.create
+    @enterprise.sanctions << @sanction
   
   end
 
@@ -36,6 +40,21 @@ RSpec.describe EnterprisesController, :type => :controller do
           expect( response ).to have_http_status( :success )
         end
     
+      end
+
+      it "should show the correct enterprise" do
+          get :show, :id => @enterprise.id
+          expect( assigns( :enterprise ) ).to eq( @enterprise )
+      end
+
+      it "should show the enterprise's payments" do
+          get :show, :id => @enterprise.id
+          expect( assigns( :payments ) ).to include( @payment )
+      end
+
+      it "should show the enterprise's sanctions" do
+          get :show, :id => @enterprise   .id
+          expect( assigns ( :sanctions ) ).to include( @sanction )
       end
     
     end
