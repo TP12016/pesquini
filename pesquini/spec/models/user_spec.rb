@@ -17,15 +17,13 @@ RSpec.describe User, :type => :model do
 	
 	end
 
-	it 
-	{
+	it do
 		expect( @user ).to respond_to( :login, :type, :password_confirmation, :password )
-	}
+	end
 	
-	it 
-	{
+	it do
 		expect( @user ).to be_valid
-	}
+	end
 	
 	describe "attribute" do
 	
@@ -38,12 +36,44 @@ RSpec.describe User, :type => :model do
 				it "should not pass" do
 					expect( @user ).not_to be_valid
 				end
+
+				before { @user.login = "a" * 51}
+
+				it "should not pass" do
+					expect( @user ).not_to be_valid
+				end
+
+			end
+
+			describe "with less than 50 chars" do
+			
+				before { @user.login = "a" * 49 }
 	
+					it "should pass" do
+						expect( @user ).to be_valid
+					end	
+
+			end
+
+			describe "with more than 5 chars" do
+			
+				before { @user.login = "a" * 6 }
+	
+					it "should pass" do
+						expect( @user ).to be_valid
+					end	
+
 			end
 	
 			describe "with less than 5 chars" do
 	
 				before { @user.login = "b" * 2 }
+	
+				it "should not pass" do
+					expect( @user ).not_to be_valid
+				end
+
+				before { @user.login = "b" * 4 }
 	
 				it "should not pass" do
 					expect( @user ).not_to be_valid
@@ -92,7 +122,23 @@ RSpec.describe User, :type => :model do
 				it "should not pass" do
 					expect( @user ).not_to be_valid					
 				end
+
+				before { @user.password = "c" * 4 }
 	
+				it "should not pass" do
+					expect( @user ).not_to be_valid					
+				end
+	
+			end
+
+			describe "with more than 8 chars" do
+	
+			before { @user.password = "c" * 9 }
+	
+				it "should pass" do
+					expect( @user ).to be_valid					
+				end
+
 			end
 	
 		end
