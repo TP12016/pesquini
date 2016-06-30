@@ -304,4 +304,9 @@ en:
   Dados sobre sanções não informados: "Data not informed sanctions"
   Dado nao informado: "Data not informed"
 
-  
+  #enterprises
+  #index.html.erb
+  Ferramenta de busca: "Search tool"
+  Nome ou CNPJ: "Name or CNPJ"
+  Não existem sanções contra a empresa procurada: "There are no sanctions against the enterprise sought"
+  Lista das empresas encontradas: "List of enterprises found"
