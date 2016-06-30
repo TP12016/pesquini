@@ -40,6 +40,8 @@ class StatisticsController < ApplicationController
 
     return @enterprise_group_count
 
+    assert @enterprise_group_count.empty?, "Group of enterprises can not return empty"
+
   end
 
   #
@@ -63,6 +65,8 @@ class StatisticsController < ApplicationController
 
     return @enterprises_featured_payments
 
+    assert @enterprises_featured_payments.empty?, "Enterprises groups can not return empty"
+
   end
 
   #
@@ -79,6 +83,8 @@ class StatisticsController < ApplicationController
 
     return @enterprises_group_paginate
 
+    assert @enterprises_group_paginate.empty?, "Enterprises groups can not return empty"
+
   end
 
   #
@@ -88,6 +94,8 @@ class StatisticsController < ApplicationController
   def payment_group_ranking()
 
     @quantity_of_payments = params[:payments_count]
+    assert @quantity_of_payments < 0, "Number of payments less than 0"
+    
     @enterprises_payment = Enterprise.where( payments_count: @quantity_of_payments)
     @enterprises_payment_paginate = @enterprises_payment.paginate(
                                         :page => params[:page], :per_page => 10)
