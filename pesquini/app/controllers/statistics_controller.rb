@@ -95,12 +95,13 @@ class StatisticsController < ApplicationController
 
     @quantity_of_payments = params[:payments_count]
     assert @quantity_of_payments < 0, "Number of payments less than 0"
-    
+
     @enterprises_payment = Enterprise.where( payments_count: @quantity_of_payments)
     @enterprises_payment_paginate = @enterprises_payment.paginate(
                                         :page => params[:page], :per_page => 10)
 
     return @enterprises_payment_paginate
+    assert @enterprises_payment_paginate.empty?, "Quantity of payments can not return empty"
 
   end
 
@@ -124,6 +125,7 @@ class StatisticsController < ApplicationController
     @chart = sanction_by_state_graph_information()
 
     return @chart
+    assert @chart.class == LazyHighCharts::HighChart
 
   end
 
@@ -160,6 +162,7 @@ class StatisticsController < ApplicationController
       parameters.chart( {:defaultSeriesType => "column"} )
 
       return parameters
+      assert parameters.empty?, "Parameters can not be null"
     end
 
   end
@@ -268,6 +271,7 @@ class StatisticsController < ApplicationController
     end
 
     return sanction_by_state_results
+    assert sanction_by_state_results.empty?, "List can not be empty"
 
   end
 
@@ -331,6 +335,7 @@ class StatisticsController < ApplicationController
     total_sanction_state_result = total_sanction_state_result.sort_by{ |i| i[0] }
 
     return total_sanction_state_result
+    assert total_sanction_state_result.empty?, "Total Santions by state can not be empty"
   end
 
 end
