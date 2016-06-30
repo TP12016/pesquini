@@ -240,3 +240,23 @@ en:
   #footer.html.erb
   Sobre nós: "About us"
   Equipe de alunos UnB, disciplina MDS/GPP: "Team UnB students, MDS / GPP discipline"
+
+  #index.html.erb
+  Digite nome ou CNPJ da empresa: "Type enterprise name or CNPJ"
+  Pesquisa: "Search"
+  de empresas: "Enterprises"
+  Inidôneas: "Disreputable"
+
+  O que são: "What are"
+  empresas: "enterprises"
+  As empresas que constam como sendo inidôneas são aquelas que receberam sanções que tenham como efeito, ou restrição ao direito de participar em licitações ou de celebrar contratos com a Administração Pública, algumas das sanções que uma empresa pode sofrer: "Enterprises listed as inapt are those who received sanctions that have the effect of, or restriction on the right to participate in bidding or contracting with the Public Administration. Some of the sanctions that a company can suffer"
+  Suspensão: "Suspension"
+  temporária: "temporary"
+  Declaração: "Declaration"
+  de inidoneidade: "of unfitness"
+  Impedimento: "Impediment"
+  de licitar e contratar: "to bid and hire"
+  Proibição: "Ban"
+  de participar de licitações e de contratar: "to participate in bidding and hiring"
+  Outras: "Others"
+  Clique aqui saber sobre mais sanções e informações sobre elas: "Click here to know more about sanctions and information about them"

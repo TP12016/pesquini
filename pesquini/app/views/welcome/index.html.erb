@@ -11,7 +11,7 @@
 
       <%= search_form_for @search do |f| %>
       <div class="input-group">
-        <%= f.text_field :corporate_name_cont, class: "form-control input-lg id", placeholder: "Digite nome ou CNPJ da empresa", placeholder: "Digite nome ou CNPJ da empresa"%>
+        <%= f.text_field :corporate_name_cont, class: "form-control input-lg id", placeholder: t('Digite nome ou CNPJ da empresa'), placeholder: t('Digite nome ou CNPJ da empresa')%>
         <span class="input-group-btn">
           <%= f.button type: "submit", class: "btn btn-lg btn-r", id: "search_index" do %>
             <i class="fa fa-search fa-lg"></i>
@@ -22,7 +22,7 @@
       <% end %>
       <div class="text_pesq_empr">
       <hr>
-        <p class="lead"><strong>Pesquisa</strong> de empresas <strong>Inidôneas</strong></p>
+        <p class="lead"><strong><%= t('Pesquisa') %> </strong><%= t('de empresas') %> <strong><%= t('Inidôneas') %></strong></p>
 
       </div>
     </div>
@@ -42,32 +42,32 @@
       <div class="col-md-6">
         <div class="about-text">
           <div class="section-title">
-            <h4>O que são </h4>
-            <h2>empresas <strong>Inidôneas</strong> ?</h2>
+            <h4><%= t('O que são') %></h4>
+            <h2><%= t('empresas') %> <strong><%= t('Inidôneas') %></strong> ?</h2>
             <hr>
             <div class="clearfix"></div>
           </div>
-          <p class="intro">As empresas que constam como sendo inidôneas são aquelas que receberam sanções que tenham como efeito, ou restrição ao direito de participar em licitações ou de celebrar contratos com a Administração Pública. Algumas das sanções que uma empresa pode sofrer:</p>
+          <p class="intro"><%= t('As empresas que constam como sendo inidôneas são aquelas que receberam sanções que tenham como efeito, ou restrição ao direito de participar em licitações ou de celebrar contratos com a Administração Pública, algumas das sanções que uma empresa pode sofrer') %>:</p>
           <ul class="about-list">
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Suspensão</strong> <em> temporária</em>
+              <strong><%= t('Suspensão') %></strong> <em><%= t('temporária') %></em>
             </li>
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Declaração</strong> <em> de inidoneidade</em>
+              <strong><%= t('Declaração') %></strong> <em><%= t('de inidoneidade') %></em>
             </li>
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Impedimento</strong><em> de licitar e contratar</em>
+              <strong><%= t('Impedimento') %></strong> <em><%= t('de licitar e contratar') %></em>
             </li>
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Proibição</strong> <em> de participar de licitações e de contratar</em>
+              <strong><%= t('Proibição') %></strong> <em><%= t('de participar de licitações e de contratar') %></em>
             </li>
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Outras</strong> -  <a class = "more_link" href ="more"><em>Clique aqui saber sobre mais sanções e informações sobre elas</em></a>
+              <strong><%= t('Outras') %></strong> -  <a class = "more_link" href ="more"><em><%= t('Clique aqui saber sobre mais sanções e informações sobre elas') %></em></a>
             </li>
           </ul>
         </div>
