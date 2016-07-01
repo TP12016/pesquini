@@ -1,22 +1,29 @@
+<!--
+File: index.html.rb
+Purpouse: Page to show informations type explantion.
+License: GPL v3
+Pesquini Group 6.
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+-->
+
 <div id="tf-sanction_by_state">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <!--<img src="img/02.png" class="img-responsive">-->
         <%= image_tag 'estados.jpg', class: "img-responsive" %>
       </div>
       <div class="col-md-6">
         <div class="about-text">
           <div class="section-title">
-            <h2><strong>Estados </strong>com mais sanções</h2>
+            <h2><strong><%= t('Estados </strong>com mais sanções')%></h2>
             <hr>
             <div class="clearfix"></div>
           </div>
-          <p class="intro"> Este gráfico ilustra quais tipo de sanções as empresas brasileiras mais sofreram de forma geral. Como também demonstra através de um filtro por estado, qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil. </p>
+          <p class="intro"><%= t('Este gráfico ilustra quais tipo de sanções as empresas brasileiras mais sofreram de forma geral. Como também demonstra através de um filtro por estado, qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil.')%></p>
           <ul class="about-list">
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Link</strong> -  <a href ="/statistics/sanction_by_state_graph"><em>Clique aqui para ser redirecionado para a página.</em></a>
+              <strong>Link</strong> -  <a href ="/statistics/sanction_by_state_graph"><em><%= t('Clique aqui para ser redirecionado para a página.')%></em></a>
             </li>
           </ul>
         </div>
@@ -31,21 +38,20 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <!--<img src="img/02.png" class="img-responsive">-->
         <%= image_tag 'empresa_3.jpg', class: "img-responsive" %>
       </div>
       <div class="col-md-6">
         <div class="about-text">
           <div class="section-title">
-            <h2><strong>Empresas </strong>com mais sanções</h2>
+            <h2><strong><%= t('Empresas </strong>com mais sanções')%></h2>
             <hr>
             <div class="clearfix"></div>
           </div>
-          <p class="intro">Este ranking possui informações sobre as empresas que mais receberam sanções desde 1988, separando-as por grupos de número de sanções</p>
+          <p class="intro"><%= t('Este ranking possui informações sobre as empresas que mais receberam sanções desde 1988, separando-as por grupos de número de sanções')%></p>
           <ul class="about-list">
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Link</strong> -  <a href ="/statistics/most_sanctioned_ranking"><em>Clique aqui para ser redirecionado para a página .</em></a>
+              <strong>Link</strong> -  <a href ="/statistics/most_sanctioned_ranking"><em><%= t('Clique aqui para ser redirecionado para a página.')%></em></a>
             </li>
           </ul>
         </div>
@@ -60,21 +66,20 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <!--<img src="img/02.png" class="img-responsive">-->
         <%= image_tag 'sanção.jpg', class: "img-responsive" %>
       </div>
       <div class="col-md-6">
         <div class="about-text">
           <div class="section-title">
-            <h2><strong>Tipos </strong>de sanções</h2>
+            <h2><strong><%= t('Tipos </strong>de sanções')%></h2>
             <hr>
             <div class="clearfix"></div>
           </div>
-          <p class="intro">Este gráfico ilustra quais tipos de sanções as empresas brasileiras mais sofreram de forma geral. São elas: suspensão temporária, declaração de inidoneidade, impedimento de licitar e contratar, proibição de participar de licitações e de contratar. Esta estatística também demonstra através de um filtro por estado, qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil.</p>
+          <p class="intro"><%= t('Este gráfico ilustra quais tipos de sanções as empresas brasileiras mais sofreram de forma geral. São elas: suspensão temporária, declaração de inidoneidade, impedimento de licitar e contratar, proibição de participar de licitações e de contratar. Esta estatística também demonstra através de um filtro por estado, qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil.')%></p>
           <ul class="about-list">
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Link</strong> -  <a href ="/statistics/sanction_by_type_graph"><em>Clique aqui para ser redirecionado para a página...</em></a>
+              <strong>Link</strong> -  <a href ="/statistics/sanction_by_type_graph"><em><%= t('Clique aqui para ser redirecionado para a página...')%></em></a>
             </li>
           </ul>
         </div>
@@ -88,21 +93,20 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <!--<img src="img/02.png" class="img-responsive">-->
         <%= image_tag 'dinheiro.jpg', class: "img-responsive" %>
       </div>
       <div class="col-md-6">
         <div class="about-text">
           <div class="section-title">
-            <h2><strong>Empresas </strong>com mais pagamentos</h2>
+            <h2><strong><%= t('Empresas </strong>com mais pagamentos')%></h2>
             <hr>
             <div class="clearfix"></div>
           </div>
-          <p class="intro">Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais recebram pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados.</p>
+          <p class="intro"><%= t('Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais recebram pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados.')%></p>
           <ul class="about-list">
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Link</strong> -  <a href ="/statistics/most_paymented_ranking"><em> Clique aqui para ser redirecionado para a página ...</em></a>
+              <strong>Link</strong> -  <a href ="/statistics/most_paymented_ranking"><em><%= t(' Clique aqui para ser redirecionado para a página...')%></em></a>
             </li>
           </ul>
         </div>
