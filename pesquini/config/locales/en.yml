@@ -310,3 +310,10 @@ en:
   Nome ou CNPJ: "Name or CNPJ"
   Não existem sanções contra a empresa procurada: "There are no sanctions against the enterprise sought"
   Lista das empresas encontradas: "List of enterprises found"
+
+   #404.html.erb
+  A url nao foi encontrada no servidor.: "Url not found by server."
+  
+  #parser/index.html.erb
+  Olá, para executar o parser de empresas inidoneas acesse localhost:3000/parser/cei: "Hi, to execute disreputable enterprise parser visit localhost:3000/parser/cei"
+  Olá, para executar o parser de pagamentos do governo acesse localhost:3000/parser/pagamentos: "Hi, to execute government payments parser visit localhost:3000/parser/pagamentos"
