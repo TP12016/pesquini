@@ -121,7 +121,7 @@ class StatisticsController < ApplicationController
     gon.data = total_by_state
 
     # [String] keeps graph title.
-    title = "Chart Sanctions for State"
+    title = t('Gráfico de Sanções por Estado')
 
     # receives information for plot graph.
     @chart = sanction_by_state_graph_information()
@@ -137,7 +137,7 @@ class StatisticsController < ApplicationController
   # @return informations chart.
   def sanction_by_state_graph_information()
 
-    title = "Chart Sanctions for State"
+    title = t('Gráfico de Sanções por Estado')
 
     @chart = LazyHighCharts::HighChart.new( "graph" ) do |parameters|
 
@@ -175,7 +175,7 @@ class StatisticsController < ApplicationController
   # @return type of sanctions chart.
   def sanction_by_type_graph()
 
-    title = "Chart Sanctions for Type"
+    title = t('Gráfico Sanções por Tipo')
 
     @chart = sanction_by_type_graph_information()
 
@@ -202,7 +202,7 @@ class StatisticsController < ApplicationController
   # @return type of sanctions information chart.
   def sanction_by_type_graph_information()
 
-    title = "Sanction graph by type"
+    title = t('Gráfico Sanções por Tipo')
     LazyHighCharts::HighChart.new( "pie" ) do |format|
 
       logger.info("build information for chart.")
