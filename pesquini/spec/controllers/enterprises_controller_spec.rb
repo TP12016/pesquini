@@ -7,7 +7,6 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
 
 require "rails_helper"
-require "logger"
 
 RSpec.describe EnterprisesController, :type => :controller do 
   
@@ -43,28 +42,24 @@ RSpec.describe EnterprisesController, :type => :controller do
     
       end
 
-      logger.info("test if enteprise are registered.")
 
       it "should show the correct enterprise" do
           get :show, :id => @enterprise.id
           expect( assigns( :enterprise ) ).to eq( @enterprise )
       end
 
-      logger.info("test if correct enterprise")
 
       it "should show the enterprise's payments" do
           get :show, :id => @enterprise.id
           expect( assigns( :payments ) ).to include( @payment )
       end
 
-      logger.info("test if correct payment")
 
       it "should show the enterprise's sanctions" do
           get :show, :id => @enterprise   .id
           expect( assigns ( :sanctions ) ).to include( @sanction )
       end
 
-      logger.info("test if correct sanction")
     
     end
 
@@ -81,7 +76,5 @@ RSpec.describe EnterprisesController, :type => :controller do
     end 
   
   end
-
-  logger.info("finishing enterprises tests")
 
 end
