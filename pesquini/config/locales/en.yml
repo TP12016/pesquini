@@ -310,3 +310,12 @@ en:
   Nome ou CNPJ: "Name or CNPJ"
   Não existem sanções contra a empresa procurada: "There are no sanctions against the enterprise sought"
   Lista das empresas encontradas: "List of enterprises found"
+
+  #show.html.erb
+  CNPJ da Empresa: "Enterprise CNPJ"
+  Posição no: "Position in"
+  grupo: "group"
+  do ranking de empresas mais sancionadas: "on ranking of the most sanctioned enterprises"
+  Posição no ranking de empresas que mais receberam verbas de pagamentos: "Position in the ranking of companies that received payments of funds"
+  Sanções: "Sanctions"
+  Pagamentos: "Payments"
