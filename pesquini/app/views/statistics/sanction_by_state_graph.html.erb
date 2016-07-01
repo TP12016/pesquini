@@ -1,13 +1,20 @@
+<!--
+File: sanction_by_state_graph.html.rb
+Purpouse: Page to show sanctions by state chart.
+License: GPL v3
+Pesquini Group 6.
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+-->
 
 <div class="container">
 
   <%= render 'back_button' %>
 
 <span class="same_line">
-     Filtrar sanções por Ano:
+     <%= t('Filtrar sanções por Ano:')%>
 <%= form_tag("/statistics/sanction_by_state_graph", method: "get", remote: true) do %>
   <%= select_tag 'year_', options_for_select(@years, :selected => params[:year_]), id: "select_tag"%>
-  <%= submit_tag "Confirmar", name: nil, id: "select_button"%>
+  <%= submit_tag t('Confirmar')%>, name: nil, id: "select_button"%>
 
 <% end %>
 </span>

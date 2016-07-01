@@ -339,4 +339,10 @@ en:
   Empresas com mais pagamentos: "Most paymented enterprises"
   Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais recebram pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados.: "This topic is available ranking with information about the companies that recebram payments for government tenders from the start of data collection."
   Clique aqui para ser redirecionado para a página...: "Click here to be redirected to the page ..."
-  
+
+  # statistics/enterprise_group_ranking.html.rb
+  Lista de empresas com <%="#{@quantity_of_sanctions}"%> sanções: "List of enterprises with <%='#{@quantity_of_sanctions}'%> sanctions"
+
+  # statistics/sanction_by_state_graph.html.rb
+  Filtrar sanções por Ano: "Filter sanctions by year:"
+  Confirmar: "Confirm"
