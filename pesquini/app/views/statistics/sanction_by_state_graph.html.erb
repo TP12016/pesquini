@@ -14,7 +14,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
      <%= t('Filtrar sanções por Ano:')%>
 <%= form_tag("/statistics/sanction_by_state_graph", method: "get", remote: true) do %>
   <%= select_tag 'year_', options_for_select(@years, :selected => params[:year_]), id: "select_tag"%>
-  <%= submit_tag t('Confirmar')%>, name: nil, id: "select_button"%>
+  <%= submit_tag "Confirmar", name: nil, id: "select_button"%>
 
 <% end %>
 </span>

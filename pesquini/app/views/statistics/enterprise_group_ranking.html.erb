@@ -7,7 +7,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 -->
 
 <div class="container">
-  <div id="titulo_ranking"><h2><%= t('Lista de empresas com <%="#{@quantity_of_sanctions}"%> sanções')%></h2>
+  <div id="titulo_ranking"><h2><%= t('Lista de empresas com')%> <%="#{@quantity_of_sanctions}"%> <%= t('sanções')%></h2>
   <hr>
   </div>
   <%@enterprises_group_paginate.each_with_index do |enterprises_group, index| %>

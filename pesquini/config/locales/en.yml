@@ -324,24 +324,30 @@ en:
 
   # statistics/most_sanctioned_ranking.html.erb
   Ranking de empresas com mais sanções: "Ranking of enterprises with more sanctions"
-  Grupo de Empresas com: "Enterprise group with" 
+  Grupo de Empresas: "Group of enterprises" 
+  com: "with" 
 
   # statistics/index.html.erb
-  Estados com mais sanções: "States with more sanctions"
+  Estados: "States" 
+  com mais sanções: "with more sanctions"
   Este gráfico ilustra quais tipo de sanções as empresas brasileiras mais sofreram de forma geral. Como também demonstra através de um filtro por estado, qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil.: "This chart shows what kind of sanctions Brazilian companies suffered more generally. As also shown through a filter by state, what kind of penalty more occurred in each of the federal units of Brazil."
   Clique aqui para ser redirecionado para a página.: "Click here to be redirected to the page."
-  Empresas com mais sanções: "Most sanctioned esterprises"
+  Empresas: "Enterprises"
+  com mais sanções: "with more sanctions"
   Este ranking possui informações sobre as empresas que mais receberam sanções desde 1988, separando-as por grupos de número de sanções: "This ranking has information about the companies that received sanctions since 1988, separating them by groups of number of sanctions"
   Clique aqui para ser redirecionado para a página.: "Click here to be redirected to the page."
-  Tipos de sanções: "Types of sanctions"
-  Este gráfico ilustra quais tipos de sanções as empresas brasileiras mais sofreram de forma geral. São elas: suspensão temporária, declaração de inidoneidade, impedimento de licitar e contratar, proibição de participar de licitações e de contratar. Esta estatística também demonstra através de um filtro por estado, qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil.: "This chart shows what kinds of sanctions Brazilian companies suffered most generally are:. Temporary suspension, declaration of unfitness, incapacity to bid and contract, prohibition of participating in bidding and hiring. This statistic also shows through a filter by state, what type of sanction more occurred in each of the federative units of Brazil."
+  Tipos: "Types" 
+  de sanções: "of sanctions"
+  Este gráfico ilustra quais tipos de sanções as empresas brasileiras mais sofreram de forma geral. São elas suspensão temporária, declaração de inidoneidade, impedimento de licitar e contratar, proibição de participar de licitações e de contratar. Esta estatística também demonstra através de um filtro por estado, qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil.: "This chart shows what kinds of sanctions Brazilian companies suffered most generally are:. Temporary suspension, declaration of unfitness, incapacity to bid and contract, prohibition of participating in bidding and hiring. This statistic also shows through a filter by state, what type of sanction more occurred in each of the federative units of Brazil."
   Clique aqui para ser redirecionado para a página...: "Click here to be redirected to the page ..."
-  Empresas com mais pagamentos: "Most paymented enterprises"
+  Empresas: "Enterprises" 
+  com mais pagamentos: "with more payments"
   Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais recebram pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados.: "This topic is available ranking with information about the companies that recebram payments for government tenders from the start of data collection."
   Clique aqui para ser redirecionado para a página...: "Click here to be redirected to the page ..."
 
   # statistics/enterprise_group_ranking.html.rb
-  Lista de empresas com <%="#{@quantity_of_sanctions}"%> sanções: "List of enterprises with <%='#{@quantity_of_sanctions}'%> sanctions"
+  Lista de empresas com sanções: "List of enterprises with"  
+  sanções: "sanctions"
 
   # statistics/sanction_by_state_graph.html.rb
   Filtrar sanções por Ano: "Filter sanctions by year:"
