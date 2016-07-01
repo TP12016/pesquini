@@ -321,3 +321,7 @@ en:
   #statistics/most_paymented_ranking.html.rb
   Ranking das empresas que mais receberam verba em pagamentos: "Enterprises with most fund in payments Ranking"
   Total de pagamentos feitos a empresa: "Total payments made to enterprise"
+
+  # statistics/most_sanctioned_ranking.html.erb
+  Ranking de empresas com mais sanções: "Ranking of enterprises with more sanctions"
+  Grupo de Empresas com: "Enterprise group with" 
