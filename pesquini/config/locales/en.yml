@@ -319,3 +319,12 @@ en:
   Posição no ranking de empresas que mais receberam verbas de pagamentos: "Position in the ranking of companies that received payments of funds"
   Sanções: "Sanctions"
   Pagamentos: "Payments"
+
+  #404.html.erb
+  A url nao foi encontrada no servidor.: "Url not found by server."
+  
+  #parser/index.html.erb
+  Olá, para executar o parser de empresas inidoneas acesse localhost:3000/parser/cei: "Hi, to execute disreputable enterprise parser visit localhost:3000/parser/cei"
+  Olá, para executar o parser de pagamentos do governo acesse localhost:3000/parser/pagamentos: "Hi, to execute government payments parser visit localhost:3000/parser/pagamentos"
+  
+
