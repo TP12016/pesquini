@@ -8,12 +8,16 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 module SessionsHelper
 
+  require 'logger'
+
   #
   # Method with user login information.
   # @param user [String] contains session user login information.
   #
   # @return [String] current user logged.
   def sign_in( user )
+
+    logger.info("login user.")
 
     Preconditions.check_not_nil( user )
 
@@ -23,13 +27,11 @@ module SessionsHelper
     user.update_attribute( :remember_token, User.digest( remember_token ) )
     self.current_user = user
 
+    logger.debug("current user in application")
+
     return current_user
 
     end
-
-    return current_user
-
-	end
 
   #
   # @deprecated  Method to return current user.
@@ -58,12 +60,16 @@ module SessionsHelper
   end
 
   #
-  # Check's if signed in user is not null.
+  # Check's if signed user is not null.
   #
   # @return [String] not null user.
   def signed_in?()
 
-    !current_user.nil?
+    begin
+      !current_user.nil?
+    rescue
+      logger.fatal("logged user is nil")
+    end
 
     return current_user
 
@@ -76,9 +82,10 @@ module SessionsHelper
   # @return [String] alert message in case user is no authorized.
   def authorize()
 
-    unless signed_in?
-      redirect_to "/signin'" alert: "Not authorized!"
-    end
+    redirect_to '/signin', alert: "Nao autorizado !" unless signed_in?
+
+    logger.error("user is not authorized")
+    
   end
 
   #
@@ -87,15 +94,17 @@ module SessionsHelper
   # @return [String] null user.
   def sign_out()
 
-    # Log  out user by deleting session token.
+    logger.info("ending session.")
+
+    # Log out user by deleting session token.
     current_user.update_attribute( :remember_token,
     User.digest( User.new_remember_token ) )
     cookies.delete( :remember_token )
     self.current_user = nil
 
+    logger.debug("user sign out have to be nil")
+
     return current_user
-
   end
-
 end
 

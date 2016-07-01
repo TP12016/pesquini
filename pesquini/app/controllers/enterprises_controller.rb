@@ -6,6 +6,8 @@ Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
 
+PAGE_NUMBER = 10
+
 class EnterprisesController < ApplicationController
 
   # 
@@ -13,6 +15,9 @@ class EnterprisesController < ApplicationController
   # 
   # @return [String] enterprises.
   def index()
+
+
+    logger.info("result of enterprise search. Method index() in enterprises_controller.rb.")
 
     if params[:q].nil?()
 
@@ -34,11 +39,15 @@ class EnterprisesController < ApplicationController
   # @return [String] enterprise attributes.
   def show()
 
+    logger.info("loading enterprises features to show in page. Method show() in enterprises_controller.rb.")
+
     # [Integer] keeps number of enterprises search result per page.
-    @per_page = 10
+    PAGE_NUMBER
+
+    Preconditions.check_not_nil( PAGE_NUMBER )
 
     # Build enterprises values to show per page.
-    @page_number = show_page_number()
+    @page_number = show_page_number() 
     @enterprise = Enterprise.find( params[:id] )
     @collection = Sanction.where( enterprise_id: @enterprise.id )
     @payments = Payment.where( enterprise_id: @enterprise.id )
@@ -55,13 +64,18 @@ class EnterprisesController < ApplicationController
   # Method to show the page number.
   #
   # @return [ Integer ] page number.
-  def show_page_number()  
+  def show_page_number() 
+
+    logger.info("count number of results per page.")
 
     if params[:page].to_i > 0
+      Preconditions.check( :page ) {is_not_nil and has_type(Integer) and satisfies(" > 0") { :page > 0 }}
       @page_number = params[:page].to_i  - 1
     else
       @page_number = 0
     end
+
+    logger.debug("load number of results per page, should be max 10.")
 
     return @page_number
 
@@ -74,17 +88,24 @@ class EnterprisesController < ApplicationController
   # @return [String] position of most payment enterprises.
   def enterprise_payment_position( enterprise )
 
+    assert enterprise != nil
+
+    logger.info("defines enterprise position by payment. Method enterprise_payment_position() in enterprises_controller.rb")
+
     # [String] receives enterprises payments.
     payment_position = Enterprise.featured_payments
 
     payment_position.each_with_index do |total_sum, index|
 
+      logger.debug("finding by index.")
+
       # Raise an exception in case total sum is nil.
       if total_sum.nil?
-        raise "total_sum should not be nil" 
+        raise "total_sum should not be nil"
+         logger.error("total_sum is nil and should not be.") 
       end
 
-      payments_sum(total_sum, enterprise)      
+      payments_sum(total_sum, enterprise, index)      
     end
 
     return payment_position
@@ -97,12 +118,18 @@ class EnterprisesController < ApplicationController
   # @param enterprise [String] keeps the enterprise.  
   # 
   # @return [Integer] enterprise position according to the payment received.
-  def payments_sum( total_sum, enterprise )
+  def payments_sum( total_sum, enterprise, index )
 
-    Preconditions.check( index ) { index >= 0 }
+
+    logger.info("defines total sum of payments. Method payments_sum() in enterprises_controller.rb")
+
+    assert total_sum != nil
     
-    # Verify if enterprise payment sum is equal total sum. 
+    # Verify if enterprise payment sum is equal total sum in each position.
     if total_sum.payments_sum == enterprise.payments_sum
+
+      logger.debug("comparing payments.")
+
       return index + 1
     else
       # Nothing to do.

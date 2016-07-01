@@ -21,3 +21,355 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "Validation failed: %{errors}"
+        restrict_dependent_destroy:
+          has_one: "Cannot delete record because a dependent %{record} exists"
+          has_many: "Cannot delete record because dependent %{record} exist"
+  date:
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    abbr_month_names:
+    -
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
+    day_names:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    formats:
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names:
+    -
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_days:
+        one: 1 day
+        other: "%{count} days"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_months:
+        one: 1 month
+        other: "%{count} months"
+      x_seconds:
+        one: 1 second
+        other: "%{count} seconds"
+    prompts:
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Seconds
+      year: Year
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: must be accepted
+      blank: can't be blank
+      present: must be blank
+      confirmation: doesn't match %{attribute}
+      empty: can't be empty
+      equal_to: must be equal to %{count}
+      even: must be even
+      exclusion: is reserved
+      greater_than: must be greater than %{count}
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+      inclusion: is not included in the list
+      invalid: is invalid
+      less_than: must be less than %{count}
+      less_than_or_equal_to: must be less than or equal to %{count}
+      model_invalid: "Validation failed: %{errors}"
+      not_a_number: is not a number
+      not_an_integer: must be an integer
+      odd: must be odd
+      required: must exist
+      taken: has already been taken
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+      other_than: must be other than %{count}
+    template:
+      body: 'There were problems with the following fields:'
+      header:
+        one: 1 error prohibited this %{model} from being saved
+        other: "%{count} errors prohibited this %{model} from being saved"
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Billion
+          million: Million
+          quadrillion: Quadrillion
+          thousand: Thousand
+          trillion: Trillion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ", and "
+      two_words_connector: " and "
+      words_connector: ", "
+  time:
+    am: am
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: pm
+
+  #_header.html.erb
+  Pesquisas: "Search"
+  Estatisticas: "Statistics"
+  Sobre: "About"
+  Saiba Mais: "More"
+  Logout: "Logout"
+
+  #footer.html.erb
+  Sobre nós: "About us"
+  Equipe de alunos UnB, disciplina MDS/GPP: "Team UnB students, MDS / GPP discipline"
+
+  #index.html.erb
+  Digite nome ou CNPJ da empresa: "Type enterprise name or CNPJ"
+  Pesquisa: "Search"
+  de empresas: "Enterprises"
+  Inidôneas: "Disreputable"
+
+  O que são: "What are"
+  empresas: "enterprises"
+  As empresas que constam como sendo inidôneas são aquelas que receberam sanções que tenham como efeito, ou restrição ao direito de participar em licitações ou de celebrar contratos com a Administração Pública, algumas das sanções que uma empresa pode sofrer: "Enterprises listed as inapt are those who received sanctions that have the effect of, or restriction on the right to participate in bidding or contracting with the Public Administration. Some of the sanctions that a company can suffer"
+  Suspensão: "Suspension"
+  temporária: "temporary"
+  Declaração: "Declaration"
+  de inidoneidade: "of unfitness"
+  Impedimento: "Impediment"
+  de licitar e contratar: "to bid and hire"
+  Proibição: "Ban"
+  de participar de licitações e de contratar: "to participate in bidding and hiring"
+  Outras: "Others"
+  Clique aqui saber sobre mais sanções e informações sobre elas: "Click here to know more about sanctions and information about them"
+  Formas de: "Forms of"
+  pesquisa: "search"
+  Pesquisa por nome ou CNPJ: "Search for name or CNPJ"
+  Realizar a pesquisa através da razão social da empresa: "To search by company name"
+  Mostrar todas as empresas: "Show all enterprises"
+  Mostrar todas as empresas cadastradas: "Show all registered enterprises"
+  Estatísticas: "Statistics"
+  sobre empresas: "about enterprises"
+  Visualização de gráficos e rankings sobre empresas inidôneas, por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "View charts and rankings on disreputable companies. Through this tool it is possible to get some information related disreputable companies in general"
+  Estados com mais sanções: "States with more sanctions"
+  Gráfico que indica  a quantidade de sanções por Unidade Federativa: "Graph showing the amount of sanctions by Federal Unit"
+  Empresas com mais sanções: "Enterprises with more sanctions"
+  Ranking que indica  a quantidade de empresas com mais sançoes: "Ranking that indicates the number of companies with more sanctions"
+  Tipos de sanções: "Sanctions type"
+  Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades: "Graph indicating the types of most frequent sanction and their quantities"
+  Empresas com maior numero de pagamentos: "Companies with greater number of payments"
+  Ranking que indica as empresas que mais receberam pagamentos do governo: "Ranking that indicates the companies that received government payments"
+  Sobre o: "About the"
+  O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais , como gráficos, tabelas e rankings para a população em geral: "The pesquini system aims to provide information about disreputable Brazilian companies more interactive and attractive through visual elements such as graphs, charts and rankings for the general population"
+  Sobre: "About"
+  nós: "us"
+  Somos alunos da Universidade de Brasilia (UnB - FGA): "We are students at the University of Brasilia (UnB - FGA)"
+  Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software: "We developed this software as a discipline of design software Development Methods"
+
+  #_payments.html.erb
+  Identificador: "Identifier"
+  Número do processo: "Process number"
+  Valor inicial: "Initial value"
+  Data de assinatura: "Sign date"
+  Inicio do pagamento: "Start payment"
+  Fim do pagamento: "End payment"
+  Dados sobre pagamentos não informados: "Payment data not informed"
+
+  #_sanctions.html.erb
+  Órgao Sancionador: "Sanctioning Organ"
+  Número do processo: "Process number"
+  Data de Inicio da Sanção: "Sanction start date"
+  Data Final da Sanção: "Sanction end date"
+  UF: "State"
+  Tipo Sanção: "Sanction type"
+  Contrato pós Sanção: "Post contract sanction"
+  Dados sobre sanções não informados: "Data not informed sanctions"
+  Dado nao informado: "Data not informed"
+
+  #enterprises
+  #index.html.erb
+  Ferramenta de busca: "Search tool"
+  Nome ou CNPJ: "Name or CNPJ"
+  Não existem sanções contra a empresa procurada: "There are no sanctions against the enterprise sought"
+  Lista das empresas encontradas: "List of enterprises found"
+
+  #show.html.erb
+  CNPJ da Empresa: "Enterprise CNPJ"
+  Posição no: "Position in"
+  grupo: "group"
+  do ranking de empresas mais sancionadas: "on ranking of the most sanctioned enterprises"
+  Posição no ranking de empresas que mais receberam verbas de pagamentos: "Position in the ranking of companies that received payments of funds"
+  Sanções: "Sanctions"
+  Pagamentos: "Payments"
+
+  #404.html.erb
+  A url nao foi encontrada no servidor.: "Url not found by server."
+  
+  #parser/index.html.erb
+  Olá, para executar o parser de empresas inidoneas acesse localhost:3000/parser/cei: "Hi, to execute disreputable enterprise parser visit localhost:3000/parser/cei"
+  Olá, para executar o parser de pagamentos do governo acesse localhost:3000/parser/pagamentos: "Hi, to execute government payments parser visit localhost:3000/parser/pagamentos"
+
+  #statistics/most_paymented_ranking.html.rb
+  Ranking das empresas que mais receberam verba em pagamentos: "Enterprises with most fund in payments Ranking"
+  Total de pagamentos feitos a empresa: "Total payments made to enterprise"
+
+  # statistics/most_sanctioned_ranking.html.erb
+  Ranking de empresas com mais sanções: "Ranking of enterprises with more sanctions"
+  Grupo de Empresas: "Group of enterprises" 
+  com: "with" 
+
+  # statistics/index.html.erb
+  Estados: "States" 
+  com mais sanções: "with more sanctions"
+  Este gráfico ilustra quais tipo de sanções as empresas brasileiras mais sofreram de forma geral. Como também demonstra através de um filtro por estado, qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil.: "This chart shows what kind of sanctions Brazilian companies suffered more generally. As also shown through a filter by state, what kind of penalty more occurred in each of the federal units of Brazil."
+  Clique aqui para ser redirecionado para a página.: "Click here to be redirected to the page."
+  Empresas: "Enterprises"
+  com mais sanções: "with more sanctions"
+  Este ranking possui informações sobre as empresas que mais receberam sanções desde 1988, separando-as por grupos de número de sanções: "This ranking has information about the companies that received sanctions since 1988, separating them by groups of number of sanctions"
+  Clique aqui para ser redirecionado para a página.: "Click here to be redirected to the page."
+  Tipos: "Types" 
+  de sanções: "of sanctions"
+  Este gráfico ilustra quais tipos de sanções as empresas brasileiras mais sofreram de forma geral. São elas suspensão temporária, declaração de inidoneidade, impedimento de licitar e contratar, proibição de participar de licitações e de contratar. Esta estatística também demonstra através de um filtro por estado, qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil.: "This chart shows what kinds of sanctions Brazilian companies suffered most generally are:. Temporary suspension, declaration of unfitness, incapacity to bid and contract, prohibition of participating in bidding and hiring. This statistic also shows through a filter by state, what type of sanction more occurred in each of the federative units of Brazil."
+  Clique aqui para ser redirecionado para a página...: "Click here to be redirected to the page ..."
+  Empresas: "Enterprises" 
+  com mais pagamentos: "with more payments"
+  Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais recebram pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados.: "This topic is available ranking with information about the companies that recebram payments for government tenders from the start of data collection."
+  Clique aqui para ser redirecionado para a página...: "Click here to be redirected to the page ..."
+
+  # statistics/enterprise_group_ranking.html.rb
+  Lista de empresas com sanções: "List of enterprises with"  
+  sanções: "sanctions"
+
+  # statistics/sanction_by_state_graph.html.rb
+  Filtrar sanções por Ano: "Filter sanctions by year:"
+  Confirmar: "Confirm"
+
+  #statistics_controller.rb
+  Gráfico de Sanções por Estado: "Chart Sanctions for State"
+  Gráfico Sanções por Tipo: "Chart Sanctions for Type"
+
+  #welcome/more.html.erb
+  Conheça as sanções que uma empresa pode sofrer e seus motivos: "Meet the sanctions that a company can suffer and their reasons:"
+  Suspensão temporária (Lei de Licitações): "Temporary suspension (Public Procurement Law):"
+  -Art. 87, inciso III, da Lei nº 8.666, de 1993: "-art. 87, item III, of Law No. 8666, 1993:"
+  Art. 87.  Pela inexecução total ou parcial do contrato a Administração poderá, garantida a prévia defesa, aplicar ao contratado as seguintes sanções - III - suspensão temporária de participação em licitação e impedimento de contratar com a Administração, por prazo não superior a 2 (dois) anos;: "Art. 87. For the total or partial non-performance of the contract management may guaranteed prior defense, apply to the contractor the following sanctions - III - temporary suspension of participation in bidding and impediment to contract with the Administration for a period not exceeding 2 ( two ) years;"
+  -Obs. Art. 88 da Lei nº 8.666, de 1993: "-Obs .: Art 88 of Law No. 8666, 1993:"
+  Art. 88.  As sanções previstas nos incisos III e IV do artigo anterior poderão também ser aplicadas às empresas ou aos profissionais que, em razão dos contratos regidos por esta Lei - I - tenham sofrido condenação definitiva por praticarem, por meios dolosos, fraude fiscal no recolhimento de quaisquer tributos; II - tenham praticado atos ilícitos visando a frustrar os objetivos da licitação; III - demonstrem não possuir idoneidade para contratar com a Administração em virtude de atos ilícitos praticados.: "Art. 88. The penalties provided for in sections III and IV of the preceding article may also be applied to companies or professionals who, because of contracts governed by this Law: I - have been finally convicted for practice, by means intentional, tax fraud in the payment of any taxes; II - have committed illegal acts aimed at frustrating the objectives of the tender; III - show does not have competence to contract with the Administration as a result of wrongful acts."

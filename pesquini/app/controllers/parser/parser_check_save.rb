@@ -8,6 +8,8 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 module ParserCheckSave
 
+  require 'logger'
+
   # 
   # Method that check and save parser information.
   # @param check [String] Use to check content.
@@ -18,9 +20,11 @@ module ParserCheckSave
     Preconditions.check_argument( check ) { is_not_nil }
 
     begin
+      logger.info("file recorded.")
       check.save!
       check
     rescue ActiveRecord::RecordInvalid
+      logger.warn("record failed.")
       check = check.refresh!
       check
     end

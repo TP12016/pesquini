@@ -8,6 +8,8 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class SanctionType < ActiveRecord::Base
 
+  require 'logger'
+
   has_many :sanctions
   validates_uniqueness_of :description
 
@@ -21,6 +23,8 @@ class SanctionType < ActiveRecord::Base
 
     #  [String] receives sanction description.
     found_sanction_description = SanctionType.find_by_description( self.description )
+
+    logger.debug("sanction by description #{found_sanction_description}")
 
     return found_sanction_description
 
@@ -53,6 +57,8 @@ class SanctionType < ActiveRecord::Base
       [ "IMPEDIMENTO - LEI DO RDC", "Impedimento - Lei do RDC"],
       [ "PROIBIçãO - LEI AMBIENTAL", "Proibição - Lei Ambiental" ],
     ]
+
+    logger.debug("sanctions type #{sanction_types}")
 
     return sanction_types
 

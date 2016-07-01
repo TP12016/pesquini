@@ -8,13 +8,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class SessionsController < ApplicationController
 
-  #
-  # Empty method.
-  #
-  # @return
-  def new()
-
-  end
+  require 'logger'
 
   #
   # Method that create a session.
@@ -25,6 +19,8 @@ class SessionsController < ApplicationController
     Preconditions.check_not_nil( login )
     Preconditions.check_not_nil( password )
     Preconditions.check_not_nil( user )
+
+    logger.info("creating session by authenticating user with login and password.")
 
     # [String] Receive the parameters to login.
     login = params[:session][:login].downcase
@@ -37,10 +33,13 @@ class SessionsController < ApplicationController
 
     # Sign in user by login and password.
     if user && user.authenticate( password )
+      logger.debug("authentication worked.")
       sign_in user
       redirect_to root_path
     else
+      logger.error("authentication failed.")
       flash[:error] = "Invalid login or password!"
+      logger.debug("will try login again.")
       render :new
     end
 
@@ -52,12 +51,13 @@ class SessionsController < ApplicationController
   # @return loggout status.
   def destroy()
 
-    assert user.empty?, "User must not be empty!"
+    assert user.empty?, "User must not be empty to logout!"
     if signed_in?()
+      logger.info("logout user.")
       sign_out
       redirect_to root_path
     else
-      # Nothing to do.
+      logger.error("session didnt destroy properly.")
     end
 
   end

@@ -1,10 +1,18 @@
+<!--
+File: sanction_by_type_graph.html.rb
+Purpouse: Page to show sanctions by type chart.
+License: GPL v3
+Pesquini Group 6.
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+-->
+
 <div class="container">
 
   <%= render 'back_button' %>
 
   <div class="search_sanction_type">
     <span class="same_line">
-      Filtrar sanções por Estado:
+      <%= t('Filtrar sanções por Estado:')%>
       <%= form_tag("/statistics/sanction_by_type_graph", method: "get", remote: true) do %>
         <%= select_tag 'state_', options_for_select(@states, :selected => params[:state_]), id: "select_tag"%>
         <%= submit_tag "Confirmar", name: nil, id: "select_button"%>

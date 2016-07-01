@@ -6,7 +6,11 @@ Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
 
+INITIAL_ITERATOR = 0
+
 class StatisticsController < ApplicationController
+
+  require 'logger'
 
   # [String] Keeps list of all states.
   @@states_list = State.all_states
@@ -38,6 +42,8 @@ class StatisticsController < ApplicationController
 
     return @enterprise_group_count
 
+    assert @enterprise_group_count.empty?, "Group of enterprises can not return empty"
+
   end
 
   #
@@ -61,6 +67,8 @@ class StatisticsController < ApplicationController
 
     return @enterprises_featured_payments
 
+    assert @enterprises_featured_payments.empty?, "Enterprises groups can not return empty"
+
   end
 
   #
@@ -77,6 +85,8 @@ class StatisticsController < ApplicationController
 
     return @enterprises_group_paginate
 
+    assert @enterprises_group_paginate.empty?, "Enterprises groups can not return empty"
+
   end
 
   #
@@ -86,11 +96,14 @@ class StatisticsController < ApplicationController
   def payment_group_ranking()
 
     @quantity_of_payments = params[:payments_count]
+    assert @quantity_of_payments < 0, "Number of payments less than 0"
+
     @enterprises_payment = Enterprise.where( payments_count: @quantity_of_payments)
     @enterprises_payment_paginate = @enterprises_payment.paginate(
                                         :page => params[:page], :per_page => 10)
 
     return @enterprises_payment_paginate
+    assert @enterprises_payment_paginate.empty?, "Quantity of payments can not return empty"
 
   end
 
@@ -105,15 +118,16 @@ class StatisticsController < ApplicationController
     gon.states = @@states_list
 
     # [String] keeps total data by state.
-    gon.dados = total_by_state
+    gon.data = total_by_state
 
     # [String] keeps graph title.
-    title = "Chart Sanctions for State"
+    title = t('Gráfico de Sanções por Estado')
 
     # receives information for plot graph.
     @chart = sanction_by_state_graph_information()
 
     return @chart
+    assert @chart.class == LazyHighCharts::HighChart
 
   end
 
@@ -123,27 +137,35 @@ class StatisticsController < ApplicationController
   # @return informations chart.
   def sanction_by_state_graph_information()
 
-    title = "Chart Sanctions for State"
+    title = t('Gráfico de Sanções por Estado')
+
     @chart = LazyHighCharts::HighChart.new( "graph" ) do |parameters|
-    Preconditions.check_not_nil( parameters )
-    parameters.title( :text => title )
-    if( params[:year_].to_i() != 0 )
-      parameters.title(:text => params[:year_].to_i() )
-    else
-       # Nothing to do.
+
+      logger.info("setting information for sanction by state graph.")
+
+      Preconditions.check_not_nil( parameters )
+
+      parameters.title( :text => title )
+      if( params[:year_].to_i() != INITIAL_ITERATOR )
+        parameters.title(:text => params[:year_].to_i() )
+      else
+        logger.debug("params #{:year}")
+      end
+
+      logger.info("setting chart information.")
+
+      # Defines values to draw sanction by state chart.
+      parameters.xAxis( :categories => @@states_list )
+      parameters.series( :name => "Number of Sanctions",
+                                  :yAxis => 0, :data => total_by_state )
+      parameters.yAxis [{:title => {:text => "Sanctions", :margin => 30} }, ]
+      parameters.legend( :align => "right", :verticalAlign => "top", :y => 75,
+                :x => -50, :layout => "vertical", )
+      parameters.chart( {:defaultSeriesType => "column"} )
+
+      return parameters
+      assert parameters.empty?, "Parameters can not be null"
     end
-
-    # Defines values to draw sanction by state chart.
-    parameters.xAxis( :categories => @@states_list )
-    parameters.series( :name => "Number of Sanctions",
-                                :yAxis => 0, :data => total_by_state )
-    parameters.yAxis [{:title => {:text => "Sanctions", :margin => 30} }, ]
-    parameters.legend( :align => "right", :verticalAlign => "top", :y => 75,
-              :x => -50, :layout => "vertical", )
-    parameters.chart( {:defaultSeriesType => "column"} )
-
-    return parameters
-  end
 
   end
 
@@ -153,16 +175,17 @@ class StatisticsController < ApplicationController
   # @return type of sanctions chart.
   def sanction_by_type_graph()
 
-    title = "Chart Sanctions for Type"
+    title = t('Gráfico Sanções por Tipo')
 
     @chart = sanction_by_type_graph_information()
 
-    # If if not state clene a state list to use.
+    # If is not state clone a state list to use.
     if ( !@states )
+      logger.debug("cloning a list #{@@states_list.clone}.")
       @states = @@states_list.clone
       @states.unshift( "All" )
     else
-      # Nothing to do.
+      logger.info("it is a #{@states}")
     end
 
     respond_to do |format|
@@ -179,8 +202,11 @@ class StatisticsController < ApplicationController
   # @return type of sanctions information chart.
   def sanction_by_type_graph_information()
 
-    title = "Sanction graph by type"
+    title = t('Gráfico Sanções por Tipo')
     LazyHighCharts::HighChart.new( "pie" ) do |format|
+
+      logger.info("build information for chart.")
+
       Preconditions.check_not_nil( format )
 
       # Defines values to draw sanction by type chart.
@@ -192,21 +218,20 @@ class StatisticsController < ApplicationController
       format.legend_style( :style => {:left => "auto", :bottom => 'auto',
                            :right => "50px",:top => "100px"})
       format.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
->>>>>>> 21da9628acc970120547806ad7dd491888c50bf082
-                      :dataLabels => {:enabled => true, :color => "black",
-                      :style => {:font => "12px Trebuchet MS, Verdana, sans-serif"}}
-      } )
-    end
 
-  end
+                      :dataLabels => {:enabled => true, :color => "black",
+                      :style => {:font => "12px Trebuchet MS, Verdana, sans-serif"}
+                    } 
+                  })
+
+    end
+  end    
 
   #
   # List of total of sanctions in a especific state in a especific year.
   #
   # @return list of sacntions in a state on a year.
   def total_by_state()
-
-    assert state_results.empty?, "The list must not be empty!"
 
     # [String] array of string that keep the results of sanctions by state.
     sanction_by_state_results = []
@@ -217,9 +242,12 @@ class StatisticsController < ApplicationController
     # Takes states that has sanction in state list to show by year.
     @@states_list.each() do |sanction_state|
 
+      logger.info("finding sanction by state in @@states_list.")
 
       # [String] keeps state found by its abbreviation.
       state = State.find_by_abbreviation( "#{sanction_state}" )
+
+      logger.info("find sanction by state id.")
 
       # [String] keeps sanctions in a state, by state id.
       sanctions_by_state = Sanction.where( state_id: state[:id] )
@@ -227,13 +255,15 @@ class StatisticsController < ApplicationController
       # [Integer] array with year that has sanctions.
       selected_year = []
 
+      logger.debug("declare array with years that has sanctions.")
+
       # Verify if year has sanction by state.
-      if( params[:year_].to_i() != 0 )
+      if( params[:year_].to_i() != INITIAL_ITERATOR )
         sanctions_by_state.each do |sanction_state|
           if( sanction_state.initial_date.year() ==  params[:year_].to_i() )
             selected_year << sanction_state
           else
-            # Nothing to do.
+            logger.debug("year without sanction #{:year}")
           end
       end
         sanction_by_state_results << ( selected_year.count() )
@@ -243,6 +273,7 @@ class StatisticsController < ApplicationController
     end
 
     return sanction_by_state_results
+    assert sanction_by_state_results.empty?, "List can not be empty"
 
   end
 
@@ -258,7 +289,9 @@ class StatisticsController < ApplicationController
     # List with santions by type.
     total_sanction_by_type_result = []
 
-    iterator = 0
+    iterator = INITIAL_ITERATOR
+
+    logger.info("find state by abbreviation")
 
     # [String] receives state by its abbreviation.
     state = State.find_by_abbreviation( params[:state_] )
@@ -277,7 +310,7 @@ class StatisticsController < ApplicationController
       if( params[:state_] && params[:state_] != "All" )
         sanctions_by_type = sanctions_by_type.where( state_id: state[:id] )
       else
-        # Nothing to do.
+        logger.debug("no sanctions_by_type #{sanctions_by_type}")
       end
 
       # Concatenate sanction type in the result list, to have all sanctions by type.
@@ -289,9 +322,10 @@ class StatisticsController < ApplicationController
     end
 
 
-    results2 << "Uninformed"
-      Preconditions.check_not_nil( total )
+    total_sanction_by_type_result << "Uninformed"
+      
       if ( params[:state_] && params[:state_] != "All" )
+        Preconditions.check_not_nil( total )
         total = Sanction.where(state_id: state[:id] ).count
       else
         total = Sanction.count
@@ -303,6 +337,7 @@ class StatisticsController < ApplicationController
     total_sanction_state_result = total_sanction_state_result.sort_by{ |i| i[0] }
 
     return total_sanction_state_result
+    assert total_sanction_state_result.empty?, "Total Santions by state can not be empty"
   end
 
 end

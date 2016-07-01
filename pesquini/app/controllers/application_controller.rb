@@ -8,6 +8,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class ApplicationController < ActionController::Base
 
+  require 'logger'
   include SessionsHelper
 
 =begin
@@ -25,6 +26,8 @@ class ApplicationController < ActionController::Base
   # @return exception.
   def raise_not_found!()
 
+    logger.warn("has ocurred a problem in routing.")
+
     raise ActionController::RoutingError.
           new( "No route matches #{params[:unmatched_route]}" )
 
@@ -37,10 +40,16 @@ class ApplicationController < ActionController::Base
   def render_not_found()
 
     respond_to do |error404|
+      logger.info("gives error 404 in html.")
       Preconditions.check_not_nil( error404 )
       error404.html{ render :template => "errors/404", :status => 404 }
     end
 
+  end
+
+  before_filter :set_locale
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 
 end
