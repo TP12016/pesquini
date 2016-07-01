@@ -352,3 +352,8 @@ en:
   # statistics/sanction_by_state_graph.html.rb
   Filtrar sanções por Ano: "Filter sanctions by year:"
   Confirmar: "Confirm"
+
+  #statistics_controller.rb
+  Gráfico de Sanções por Estado: "Chart Sanctions for State"
+  Gráfico Sanções por Tipo: "Chart Sanctions for Type"
+  

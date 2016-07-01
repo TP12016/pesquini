@@ -246,3 +246,7 @@ pt-BR:
 
   #index.html.erb
   Digite nome ou CNPJ da empresa: "Digite nome ou CNPJ da empresa"
+
+  #statistics_controller.rb
+  Gráfico de Sanções por Estado: "Gráfico de Sanções por Estado"
+  Gráfico Sanções por Tipo: "Gráfico Sanções por Tipo"
