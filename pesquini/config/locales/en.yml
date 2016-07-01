@@ -366,3 +366,10 @@ en:
   Gráfico de Sanções por Estado: "Chart Sanctions for State"
   Gráfico Sanções por Tipo: "Chart Sanctions for Type"
 
+  #welcome/more.html.erb
+  Conheça as sanções que uma empresa pode sofrer e seus motivos: "Meet the sanctions that a company can suffer and their reasons:"
+  Suspensão temporária (Lei de Licitações): "Temporary suspension (Public Procurement Law):"
+  -Art. 87, inciso III, da Lei nº 8.666, de 1993: "-art. 87, item III, of Law No. 8666, 1993:"
+  Art. 87.  Pela inexecução total ou parcial do contrato a Administração poderá, garantida a prévia defesa, aplicar ao contratado as seguintes sanções - III - suspensão temporária de participação em licitação e impedimento de contratar com a Administração, por prazo não superior a 2 (dois) anos;: "Art. 87. For the total or partial non-performance of the contract management may guaranteed prior defense, apply to the contractor the following sanctions - III - temporary suspension of participation in bidding and impediment to contract with the Administration for a period not exceeding 2 ( two ) years;"
+  -Obs. Art. 88 da Lei nº 8.666, de 1993: "-Obs .: Art 88 of Law No. 8666, 1993:"
+  Art. 88.  As sanções previstas nos incisos III e IV do artigo anterior poderão também ser aplicadas às empresas ou aos profissionais que, em razão dos contratos regidos por esta Lei - I - tenham sofrido condenação definitiva por praticarem, por meios dolosos, fraude fiscal no recolhimento de quaisquer tributos; II - tenham praticado atos ilícitos visando a frustrar os objetivos da licitação; III - demonstrem não possuir idoneidade para contratar com a Administração em virtude de atos ilícitos praticados.: "Art. 88. The penalties provided for in sections III and IV of the preceding article may also be applied to companies or professionals who, because of contracts governed by this Law: I - have been finally convicted for practice, by means intentional, tax fraud in the payment of any taxes; II - have committed illegal acts aimed at frustrating the objectives of the tender; III - show does not have competence to contract with the Administration as a result of wrongful acts."

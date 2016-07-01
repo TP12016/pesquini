@@ -6,18 +6,16 @@ Pesquini Group 6.
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 -->
 
+
 <div class="container">
 
   <%= render 'back_button' %>
 
-  <div id="titulo_ranking"><h2><%= t('Ranking de empresas com mais sanções')%></h2>
+  <div id="titulo_ranking"><h2>Ranking de empresas com mais sanções</h2>
   <hr>
   </div>
   <% @enterprise_group.each_with_index do |e, index| %>
     <% quantity = @enterprise_group_count[index]%>
-    <h3><%= index +1 %> )   <%= link_to "Grupo de Empresas com #{e} sanções - (#{qtde})", controller: 'statistics', action: 'enterprise_group_ranking', sanctions_count: e %><br></h3>
-  <% end %>
-</div>
-
+    <h3><%= index +1 %> )   <%= link_to "Grupo de Empresas com #{e} sanções - (#{quantity})", controller: 'statistics', action: 'enterprise_group_ranking', sanctions_count: e %><br></h3>
   <% end %>
 </div>
